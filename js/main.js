@@ -36,32 +36,49 @@ const arrowsMarkup = `
 `;
 
 document.body.insertAdjacentHTML(`beforeend`, arrowsMarkup);
+
+/**
+ * function responsible for screen render
+ * @param {number} number of selected screen in array
+*/
+
 const renderScreen = (screenIndex) => {
   MAIN_SCREEN_CONTAINER.innerHTML = ``;
   const mainScreen = ALL_SCREENS[screenIndex].content.cloneNode(true);
   MAIN_SCREEN_CONTAINER.appendChild(mainScreen);
   return mainScreen;
 };
+
 const previousButton = document.querySelectorAll(`.arrows__btn`)[0];
 const nextButton = document.querySelectorAll(`.arrows__btn`)[1];
-previousButton.addEventListener(`click`, () => {
+
+const selectNextScreen = () => {
+  currentScreenIndex = currentScreenIndex < ALL_SCREENS.length - 1 ? ++currentScreenIndex : 0;
+};
+
+const selectPreviousScreen = () => {
   currentScreenIndex = currentScreenIndex !== 0 ? --currentScreenIndex : 0;
+};
+previousButton.addEventListener(`click`, () => {
+  selectPreviousScreen();
   renderScreen(currentScreenIndex);
 });
 nextButton.addEventListener(`click`, () => {
-  currentScreenIndex = currentScreenIndex < ALL_SCREENS.length - 1 ? ++currentScreenIndex : 0;
+  selectNextScreen();
   renderScreen(currentScreenIndex);
 });
+
 /**
  * function responsible for switching screens
  * @param {event} event keyboard event
 */
+
 const onArrowAndAltPress = (event) => {
   if (event.keyCode === ARROW_KEYS.NEXT_ARROW && event.altKey) {
-    currentScreenIndex = currentScreenIndex < ALL_SCREENS.length - 1 ? ++currentScreenIndex : 0;
+    selectNextScreen();
   }
   if (event.keyCode === ARROW_KEYS.PREVIOUS_ARROW && event.altKey) {
-    currentScreenIndex = currentScreenIndex !== 0 ? --currentScreenIndex : 0;
+    selectPreviousScreen();
   }
   renderScreen(currentScreenIndex);
 };
