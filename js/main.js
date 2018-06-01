@@ -10,12 +10,12 @@ const ALL_SCREENS = [
 ];
 let currentScreenIndex = 0;
 
-const ARROW_KEYS = {
+const arrowsKeys = {
   PREVIOUS_ARROW: 37,
   NEXT_ARROW: 39
 };
 
-const arrowsMarkup = `
+const ARROWS_MARKUP = `
 <div class="arrows__wrap">
   <style>
     .arrows__wrap {
@@ -35,52 +35,56 @@ const arrowsMarkup = `
 </div>
 `;
 
-document.body.insertAdjacentHTML(`beforeend`, arrowsMarkup);
-
+document.body.insertAdjacentHTML(`beforeend`, ARROWS_MARKUP);
 /**
- * function responsible for screen render
- * @param {number} number of selected screen in array
+ * function renderScreen responsible for screen render
+ * @param {number} screenIndex number of selected screen in array
 */
-
 const renderScreen = (screenIndex) => {
   MAIN_SCREEN_CONTAINER.innerHTML = ``;
   const mainScreen = ALL_SCREENS[screenIndex].content.cloneNode(true);
   MAIN_SCREEN_CONTAINER.appendChild(mainScreen);
-  return mainScreen;
 };
-
-const previousButton = document.querySelectorAll(`.arrows__btn`)[0];
-const nextButton = document.querySelectorAll(`.arrows__btn`)[1];
-
-const selectNextScreen = () => {
-  currentScreenIndex = currentScreenIndex < ALL_SCREENS.length - 1 ? ++currentScreenIndex : 0;
-};
-
-const selectPreviousScreen = () => {
-  currentScreenIndex = currentScreenIndex !== 0 ? --currentScreenIndex : 0;
-};
-previousButton.addEventListener(`click`, () => {
-  selectPreviousScreen();
-  renderScreen(currentScreenIndex);
-});
-nextButton.addEventListener(`click`, () => {
-  selectNextScreen();
-  renderScreen(currentScreenIndex);
-});
-
+const buttons = document.querySelectorAll(`.arrows__btn`);
+buttons[0].dataset.Id = 0;
+buttons[1].dataset.Id = 1;
 /**
- * function responsible for switching screens
+ * function selectNextScreen responsible for selecting next screen
+*/
+const selectNextScreen = () => {
+  if (currentScreenIndex < ALL_SCREENS.length - 1) {
+    ++currentScreenIndex;
+  } else {
+    currentScreenIndex = 0;
+  }
+};
+/**
+ * function selectNextScreen responsible for selecting previous screen
+*/
+const selectPreviousScreen = () => {
+  if (currentScreenIndex !== 0) {
+    --currentScreenIndex;
+  } else {
+    currentScreenIndex = 0;
+  }
+};
+/**
+ * function switchScreens responsible for switching screens
  * @param {event} event keyboard event
 */
-
-const onArrowAndAltPress = (event) => {
-  if (event.keyCode === ARROW_KEYS.NEXT_ARROW && event.altKey) {
+const switchScreens = (event) => {
+  if (event.keyCode === arrowsKeys.NEXT_ARROW && event.altKey || event.currentTarget.getAttribute(`data--id`) === `1`) {
     selectNextScreen();
   }
-  if (event.keyCode === ARROW_KEYS.PREVIOUS_ARROW && event.altKey) {
+  if (event.keyCode === arrowsKeys.PREVIOUS_ARROW && event.altKey || event.currentTarget.getAttribute(`data--id`) === `0`) {
     selectPreviousScreen();
   }
   renderScreen(currentScreenIndex);
 };
-document.addEventListener(`keydown`, onArrowAndAltPress);
+buttons.forEach((button) => {
+  button.addEventListener(`click`, (event) => {
+    switchScreens(event);
+  });
+});
+document.addEventListener(`keydown`, switchScreens);
 renderScreen(currentScreenIndex);
