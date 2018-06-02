@@ -68,7 +68,6 @@ const game1 = `<header class="header">
     </div>
   </footer>`;
 const firstGameScreen = createNewDomElement(game1);
-
 const gameForm = firstGameScreen.querySelector(`.game__content`);
 const checkRadioButtons = () => {
   const answers = Array.from(gameForm.querySelectorAll(`input:checked`));
