@@ -1,4 +1,4 @@
-'use strict';
+
 const MAIN_SCREEN_CONTAINER = document.querySelector(`.central`);
 const ALL_SCREENS = [
   document.querySelector(`#greeting`),
