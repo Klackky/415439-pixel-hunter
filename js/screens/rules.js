@@ -44,7 +44,6 @@ submitForm.addEventListener(`input`, () => {
 });
 submitButton.addEventListener(`click`, () => {
   renderScreen(firstGameScreen);
-  submitForm.reset();
   submitButton.disabled = true;
 });
 returnToGreetingScreen(rulesScreen);

@@ -63,9 +63,6 @@ form.addEventListener(`change`, () => {
   const answers = Array.from(form.querySelectorAll(`input:checked`));
   if (answers.some((answer) => answer.checked)) {
     renderScreen(thirdGameScreen);
-    answers.every((answer) => {
-      answer.checked = false;
-    });
   }
 });
 returnToGreetingScreen(secondGameScreen);

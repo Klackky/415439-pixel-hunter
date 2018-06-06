@@ -73,7 +73,6 @@ const checkRadioButtons = () => {
   const answers = Array.from(gameForm.querySelectorAll(`input:checked`));
   if (answers.length === 2) {
     renderScreen(secondGameScreen);
-    gameForm.reset();
   }
 };
 gameForm.addEventListener(`change`, checkRadioButtons);

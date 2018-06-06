@@ -7,7 +7,7 @@
  */
 const createNewDomElement = (string) => {
   const template = document.createElement(`div`);
-  template.innerHTML = string;
+  template.innerHTML = string.trim();
   return template;
 };
 export default createNewDomElement;
