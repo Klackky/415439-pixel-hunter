@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import calcPoints from '../utils/calc-points';
+import calculatePoints from '../utils/calc-points';
 const randomAnswers = [
   {
     answer: true,
@@ -171,11 +171,11 @@ const allCorrectAndSlowAnswers = [
 describe(`Check if player points calculated correctly`, () => {
 
   it(`should calculate points correctly`, () => {
-    assert.equal(calcPoints(negativeResult, 0), -1);
-    assert.equal(calcPoints(randomAnswers, 3), 1150);
-    assert.equal(calcPoints(randomAnswers, 1), 1050);
-    assert.equal(calcPoints(allCorrectAndQuickAnswers, 1), 1550);
-    assert.equal(calcPoints(allCorrectAndSlowAnswers, 3), 650);
+    assert.equal(calculatePoints(negativeResult, 0), -1);
+    assert.equal(calculatePoints(randomAnswers, 3), 1150);
+    assert.equal(calculatePoints(randomAnswers, 1), 1050);
+    assert.equal(calculatePoints(allCorrectAndQuickAnswers, 1), 1550);
+    assert.equal(calculatePoints(allCorrectAndSlowAnswers, 3), 650);
   });
 
 });

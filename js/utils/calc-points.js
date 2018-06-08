@@ -1,4 +1,12 @@
-const calcPoints = (answers, lifes) => {
+/**
+ * Function calculate points based on player`s performance
+ *
+ * @function calculatePoints
+ * @param {array} answers array of user`s answers
+ * @param {number} lifes remaining lifes
+ * @return {number} final points
+ */
+const calculatePoints = (answers, lifes) => {
   const correctAnswersArray = answers.filter((answer) => answer.answer);
   const fastAnswersArray = answers.filter((answer) => answer.time < 10);
   const slowAnswersArray = answers.filter((answer) => answer.time > 20);
@@ -13,4 +21,4 @@ const calcPoints = (answers, lifes) => {
   }
   return points;
 };
-export default calcPoints;
+export default calculatePoints;
