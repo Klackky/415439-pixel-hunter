@@ -1,17 +1,19 @@
 /**
-function responsible for creating timer.
- * @param {number}  time - time left.
+ * Function responsible for timer creation
+ *
+ * @function createTimer
+ * @param {number}  timeLeft - time left.
  * @return {object} timer.
  */
-const createTimer = (time) => {
-  if (typeof time !== `number`) {
+const createTimer = (timeLeft) => {
+  if (typeof timeLeft !== `number`) {
     throw new Error(`Timer should be of type number`);
   }
-  const countdown = time > 0 ? time : 0;
+  const countdown = timeLeft > 0 ? timeLeft : 0;
   return {
     countdown,
-    tick: () => {
-      return createTimer(countdown - 1);
+    tick(seconds = 1) {
+      return createTimer(countdown - seconds);
     }
   };
 };

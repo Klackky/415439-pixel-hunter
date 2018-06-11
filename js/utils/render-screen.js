@@ -1,5 +1,5 @@
-
 /**
+ * Function responsible for screen render
  *
  * @function renderScreen
  * @param {node} screen we are appending to.
