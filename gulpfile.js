@@ -1,4 +1,3 @@
-
 const del = require(`del`);
 const gulp = require(`gulp`);
 const sass = require(`gulp-sass`);
@@ -107,7 +106,7 @@ gulp.task(`build`, [`assemble`], () => {
 
 gulp.task(`test`, function () {
   return gulp
-  .src([`js/**/*.test.js`])
+  .src([`js/tests/*.test.js`])
   .pipe(rollup({
     plugins: [
       commonjs() // Сообщает Rollup, что модули можно загружать из node_modules
