@@ -18,11 +18,12 @@ const data = [
     level: 1,
     gameType: `game2`,
     task: `Угадай, фото или рисунок?`,
-    question:
+    questions: [
       {
         src: `https://i.imgur.com/DiHM5Zb.jpg`,
         type: `photo`
       }
+    ]
   },
   {
     level: 2,
@@ -62,11 +63,12 @@ const data = [
     level: 4,
     gameType: `game2`,
     task: `Угадай, фото или рисунок?`,
-    question:
+    questions: [
       {
         src: `https://i.imgur.com/DiHM5Zb.jpg`,
         type: `photo`
       }
+    ]
   },
   {
     level: 5,
@@ -106,11 +108,12 @@ const data = [
     level: 6,
     gameType: `game2`,
     task: `Угадай, фото или рисунок?`,
-    question:
+    questions: [
       {
         src: `https://i.imgur.com/DiHM5Zb.jpg`,
         type: `photo`
       }
+    ]
   },
   {
     level: 7,
@@ -150,11 +153,12 @@ const data = [
     level: 9,
     gameType: `game2`,
     task: `Угадай, фото или рисунок?`,
-    question:
+    questions: [
       {
         src: `https://i.imgur.com/DiHM5Zb.jpg`,
         type: `photo`
       }
+    ]
   }
 ];
 export default data;

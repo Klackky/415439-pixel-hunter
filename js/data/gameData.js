@@ -3,6 +3,7 @@ const INITIAL_GAME_STATE = {
   time: 300,
   level: 0,
   mistakes: 0,
-  answers: []
+  answers: [],
+  games: []
 };
 export default INITIAL_GAME_STATE;

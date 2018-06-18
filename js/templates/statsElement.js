@@ -1,18 +1,27 @@
-const statsTemplate = () => `
-  <div class="stats">
+
+const statsTemplate = (answers) => `
     <ul class="stats">
-      <li class="stats__result stats__result--wrong"></li>
-      <li class="stats__result stats__result--slow"></li>
-      <li class="stats__result stats__result--fast"></li>
-      <li class="stats__result stats__result--correct"></li>
-      <li class="stats__result stats__result--unknown"></li>
-      <li class="stats__result stats__result--unknown"></li>
-      <li class="stats__result stats__result--unknown"></li>
-      <li class="stats__result stats__result--unknown"></li>
-      <li class="stats__result stats__result--unknown"></li>
-      <li class="stats__result stats__result--unknown"></li>
+    ${answers.map((answer) => `<li class="stats__result stats__result--${checkState(answer)}"></li>`).join(``)}
     </ul>
-  </div>
-  </div>
 `;
+/**
+ * Function calculate points based on player`s performance
+ *
+ * @function checkState
+ * @param {object} answer we are work with
+ * @return {result} result we are appending to the statsTemplate;
+ */
+const checkState = (answer) => {
+  let result;
+  if (answer.isCorrect && answer.time < 10) {
+    result = `fast`;
+  } if (answer.isCorrect && answer.time > 20) {
+    result = `slow`;
+  } if (!answer.isCorrect) {
+    result = `wrong`;
+  } else {
+    result = `correct`;
+  }
+  return result;
+};
 export default statsTemplate;
