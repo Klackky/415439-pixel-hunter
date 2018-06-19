@@ -12,7 +12,7 @@ const returnToGreetingScreen = (screen) => {
   const backButton = screen.querySelector(`.back`);
   backButton.addEventListener(`click`, () => {
     renderScreen(greetingScreen);
-    INITIAL_GAME_STATE.games.push({answers: INITIAL_GAME_STATE.answers});
+    INITIAL_GAME_STATE.games.push({answers: INITIAL_GAME_STATE.answers, lives: INITIAL_GAME_STATE.lives});
     gameReset();
   });
 };

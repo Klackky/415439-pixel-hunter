@@ -5,10 +5,12 @@ import calculatePoints from '../utils/calc-points';
 import INITIAL_GAME_STATE from '../data/gameData';
 import {arrowBack} from '../templates/header';
 import statsTemplate from '../templates/statsElement';
+import {filterAnswers} from '../utils/game-utils';
 const stats = (level) => {
-  const fastAnswers = level.answers.filter((answer) => (answer.time < 10));
-  const slowAnswers = level.answers.filter((answer) => (answer.time > 20));
-  const correctAnswers = level.answers.filter((answer) => answer.isCorrect);
+//  const fastAnswers = level.answers.filter((answer) => (answer.time < 10));
+//  const slowAnswers = level.answers.filter((answer) => (answer.time > 20));
+//  const correctAnswers = level.answers.filter((answer) => answer.isCorrect);
+//  filterAnswers(level);
   const statsScreenTemplate = `<header class="header">
       ${arrowBack}
     </header>
@@ -21,14 +23,14 @@ const stats = (level) => {
   ${statsTemplate(level.answers)}
           </td>
           <td class="result__points">×&nbsp;100</td>
-          <td class="result__total">${correctAnswers.length}</td>
+          <td class="result__total">${filterAnswers(level).correctAnswers.length}</td>
         </tr>
         <tr>
           <td></td>
           <td class="result__extra">Бонус за скорость:</td>
-          <td class="result__extra">${fastAnswers.length}&nbsp;<span class="stats__result stats__result--fast"></span></td>
+          <td class="result__extra">${filterAnswers(level).fastAnswers.length}&nbsp;<span class="stats__result stats__result--fast"></span></td>
           <td class="result__points">×&nbsp;50</td>
-          <td class="result__total">${fastAnswers.length * 50}</td>
+          <td class="result__total">${filterAnswers(level).fastAnswers.length * 50}</td>
         </tr>
         <tr>
           <td></td>
@@ -40,9 +42,9 @@ const stats = (level) => {
         <tr>
           <td></td>
           <td class="result__extra">Штраф за медлительность:</td>
-          <td class="result__extra">${slowAnswers.length}&nbsp;<span class="stats__result stats__result--slow"></span></td>
+          <td class="result__extra">${filterAnswers(level).slowAnswers.length}&nbsp;<span class="stats__result stats__result--slow"></span></td>
           <td class="result__points">×&nbsp;50</td>
-          <td class="result__total">${slowAnswers.length !== 0 ? `-`(slowAnswers.length * 50) : 0}</td>
+          <td class="result__total">${filterAnswers(level).slowAnswers.length !== 0 ? `-`(filterAnswers(level).slowAnswers.length * 50) : 0}</td>
         </tr>
         <tr>
           <td colspan="5" class="result__total  result__total--final">${calculatePoints(INITIAL_GAME_STATE.answers, INITIAL_GAME_STATE.lives)}</td>
@@ -84,14 +86,14 @@ const historyResult = () => {
             ${statsTemplate(game.answers)}
             </td>
             <td class="result__points">×&nbsp;100</td>
-            <td class="result__total">900</td>
+            <td class="result__total">${filterAnswers(game).correctAnswers.length * 100}</td>
           </tr>
           <tr>
             <td></td>
             <td class="result__extra">Бонус за жизни:</td>
-            <td class="result__extra">2&nbsp;<span class="stats__result stats__result--alive"></span></td>
+            <td class="result__extra">${game.lives}&nbsp;<span class="stats__result stats__result--alive"></span></td>
             <td class="result__points">×&nbsp;50</td>
-            <td class="result__total">100</td>
+            <td class="result__total">${game.lives * 50}</td>
           </tr>
           <tr>
             <td colspan="5" class="result__total  result__total--final">${calculatePoints(game.answers, game.lives)}</td>

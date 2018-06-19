@@ -20,3 +20,15 @@ export const roundTime = (time) => {
   };
   return roundedTime;
 };
+
+export const filterAnswers = (level) => {
+  const fastAnswers = level.answers.filter((answer) => (answer.time < 10));
+  const slowAnswers = level.answers.filter((answer) => (answer.time > 20));
+  const correctAnswers = level.answers.filter((answer) => answer.isCorrect);
+  const filteredAnswers = {
+    fastAnswers,
+    slowAnswers,
+    correctAnswers
+  };
+  return filteredAnswers;
+};
