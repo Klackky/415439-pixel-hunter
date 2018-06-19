@@ -37,7 +37,7 @@ ${footerTemplate}`;
       const answers = Array.from(gameForm.querySelectorAll(`input:checked`));
       if (answers.length === 2) {
         checkAnswers(answers, level);
-        if (INITIAL_GAME_STATE.lives === 0) {
+        if (INITIAL_GAME_STATE.lives === 0 || INITIAL_GAME_STATE.level === 9) {
           renderScreen(statsScreen(INITIAL_GAME_STATE));
         } else {
           renderScreen(gameScreen(data[++INITIAL_GAME_STATE.level]));
@@ -53,7 +53,7 @@ ${footerTemplate}`;
       const answers = Array.from(form.querySelectorAll(`input:checked`));
       if (answers.some((answer) => answer.checked)) {
         checkAnswers(answers, level);
-        if (INITIAL_GAME_STATE.lives === 0 || INITIAL_GAME_STATE.level === 10) {
+        if (INITIAL_GAME_STATE.lives === 0) {
           renderScreen(statsScreen(INITIAL_GAME_STATE));
         } else {
           renderScreen(gameScreen(data[++INITIAL_GAME_STATE.level]));
@@ -67,14 +67,17 @@ ${footerTemplate}`;
     answers.forEach((answer, index) => {
       answer.addEventListener(`click`, () => {
         const isCorrectAnswer = level.questions[index].isCorrect;
+        INITIAL_GAME_STATE.answers.push({isCorrect: level.questions[index].isCorrect, time: 15});
         if (!isCorrectAnswer) {
           --INITIAL_GAME_STATE.lives;
           if (INITIAL_GAME_STATE.lives === 0) {
             renderScreen(statsScreen(INITIAL_GAME_STATE));
+          } else {
+            renderScreen(gameScreen(data[++INITIAL_GAME_STATE.level]));
           }
+        } else {
+          renderScreen(gameScreen(data[++INITIAL_GAME_STATE.level]));
         }
-        INITIAL_GAME_STATE.answers.push({isCorrect: level.questions[index].isCorrect, time: 15});
-        renderScreen(gameScreen(data[++INITIAL_GAME_STATE.level]));
       });
     });
   }

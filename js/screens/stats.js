@@ -45,7 +45,7 @@ const stats = (level) => {
           <td class="result__total">${slowAnswers.length !== 0 ? `-`(slowAnswers.length * 50) : 0}</td>
         </tr>
         <tr>
-          <td colspan="5" class="result__total  result__total--final">${calculatePoints(INITIAL_GAME_STATE.answers)}</td>
+          <td colspan="5" class="result__total  result__total--final">${calculatePoints(INITIAL_GAME_STATE.answers, INITIAL_GAME_STATE.lives)}</td>
         </tr>
       </table>
 ${historyResult()}
@@ -94,7 +94,7 @@ const historyResult = () => {
             <td class="result__total">100</td>
           </tr>
           <tr>
-            <td colspan="5" class="result__total  result__total--final">950</td>
+            <td colspan="5" class="result__total  result__total--final">${calculatePoints(game.answers, game.lives)}</td>
           </tr>
         </table>`;
       }

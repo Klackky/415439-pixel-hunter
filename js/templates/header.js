@@ -1,3 +1,4 @@
+import {roundTime} from '../utils/game-utils';
 const headerTemplate = (gameState) => `
 <header class="header">
     <div class="header__back">
@@ -37,6 +38,7 @@ ${new Array(gameState)
 `;
 
 export const timer = (time) => `
-  <h1 class="game__timer">${time}</h1>
+  <h1 class="game__timer">${roundTime(time).minutes}:${roundTime(time).seconds} </h1>
 `;
+
 export default headerTemplate;
