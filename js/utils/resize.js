@@ -4,6 +4,7 @@
  * @function resize
  * @param {object} frame frame size
  * @param {object} image image size
+ * @return {object} new image
  */
 
 const resize = (frame, image) => {
