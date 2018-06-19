@@ -6,7 +6,9 @@
  */
 const renderScreen = (screen) => {
   const MAIN_SCREEN_CONTAINER = document.querySelector(`.central`);
-  MAIN_SCREEN_CONTAINER.innerHTML = ``;
+  while (MAIN_SCREEN_CONTAINER.firstChild) {
+    MAIN_SCREEN_CONTAINER.firstChild.remove();
+  }
   MAIN_SCREEN_CONTAINER.appendChild(screen);
 };
 export default renderScreen;
