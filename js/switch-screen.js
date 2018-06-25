@@ -50,6 +50,7 @@ const renderGameScreen = (state) => {
     gameReset();
   };
 };
+
 const renderStatsScreen = (state) => {
   const statsScreenView = new StatsScreen(state);
   renderScreen(statsScreenView.element);
