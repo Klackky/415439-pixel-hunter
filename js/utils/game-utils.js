@@ -1,8 +1,8 @@
-import INITIAL_GAME_STATE from '../data/gameData';
+import {playerData} from '../data/gameData';
 export const gameReset = () => {
-  INITIAL_GAME_STATE.level = 0;
-  INITIAL_GAME_STATE.answers = [];
-  INITIAL_GAME_STATE.lives = 3;
+  playerData.level = 0;
+  playerData.answers = [];
+  playerData.lives = 3;
 };
 /**
  * Function rounds time
@@ -20,7 +20,30 @@ export const roundTime = (time) => {
   };
   return roundedTime;
 };
+/**
+ * Function checks if answer correct
+ *
+ * @function checkAnswers
+ * @param {array} answers selected options
+ * @param {object} currentLevel current level
+ * @return {object} answer
+ */
 
+export const checkAnswers = (answers, currentLevel) => {
+  for (const [index, question] of answers.entries()) {
+    if (question.value !== currentLevel.questions[index].type) {
+      return false;
+    }
+  }
+  return true;
+};
+/**
+ * Function filters array of answers
+ *
+ * @function filterAnswers
+ * @param {array} level array of answers
+ * @return {object} object of filtered arrays
+ */
 export const filterAnswers = (level) => {
   const fastAnswers = level.answers.filter((answer) => (answer.time < 10));
   const slowAnswers = level.answers.filter((answer) => (answer.time > 20));
