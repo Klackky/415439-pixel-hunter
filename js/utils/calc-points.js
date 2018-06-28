@@ -1,4 +1,4 @@
-const POINTS = {
+export const POINTS = {
   regularPoints: 100,
   extraPoints: 50
 };
@@ -19,7 +19,7 @@ const MINIMUM_REQUIREMENT = {
  * @return {number} final points
  */
 const calculatePoints = (answers, lives = 3) => {
-  const correctAnswersArray = answers.filter((answer) => answer.isCorrect);
+  const correctAnswersArray = answers.filter((answer) => answer.answer);
   const fastAnswersArray = answers.filter((answer) => answer.time < ANSWER_TIME.fastAnswer);
   const slowAnswersArray = answers.filter((answer) => answer.time > ANSWER_TIME.slowAnswer);
   let points = 0;

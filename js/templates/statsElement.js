@@ -13,11 +13,11 @@ const statsTemplate = (answers) => `
  */
 const checkState = (answer) => {
   let result;
-  if (answer.isCorrect && answer.time < 10) {
+  if (answer.answer && answer.time < 10) {
     result = `fast`;
-  } if (answer.isCorrect && answer.time > 20) {
+  } if (answer.answer && answer.time > 20) {
     result = `slow`;
-  } if (!answer.isCorrect) {
+  } if (!answer.answer) {
     result = `wrong`;
   } else {
     result = `correct`;
