@@ -5,6 +5,7 @@ import {playerData} from '../data/gameData';
 import {arrowBack} from '../templates/header';
 import statsTemplate from '../templates/statsElement';
 import {filterAnswers} from '../utils/game-utils';
+export {POINTS} from '../utils/calc-points';
 export default class StatsScreen extends AbstractView {
   constructor(state) {
     super();

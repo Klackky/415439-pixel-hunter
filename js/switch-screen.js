@@ -8,6 +8,11 @@ import StatsScreen from './views/stats';
 import {playerData} from './data/gameData';
 import {gameReset} from './utils/game-utils';
 
+const GAME_STANDARTS = {
+  minLives: 0,
+  maxLevel: 9
+};
+
 export const renderIntroScreen = () => {
   const introView = new Intro();
   renderScreen(introView.element);
@@ -37,7 +42,7 @@ const renderGameScreen = (state) => {
     if (!isCorrect) {
       --playerData.lives;
     }
-    if (state.lives === 0 || state.level === 9) {
+    if (state.lives === GAME_STANDARTS.minLives || state.level === GAME_STANDARTS.maxLevel) {
       renderStatsScreen(state);
     } else {
       ++playerData.level;

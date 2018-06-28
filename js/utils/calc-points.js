@@ -1,4 +1,4 @@
-const POINTS = {
+export const POINTS = {
   regularPoints: 100,
   extraPoints: 50
 };

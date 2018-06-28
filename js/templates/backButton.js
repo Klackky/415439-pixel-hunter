@@ -1,7 +1,3 @@
-// import renderScreen from './utils/render-screen';
-// import greetingScreen from './screens/greeting';
-// import {playerData} from './data/gameData';
-// import {gameReset} from './utils/game-utils';
 import AbstractView from '../abstract-view';
 export default class BackButton extends AbstractView {
   constructor() {
