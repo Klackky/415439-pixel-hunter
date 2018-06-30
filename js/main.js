@@ -1,4 +1,3 @@
-//import introScreen from './screens/intro';
-//import renderScreen from './utils/render-screen';
-import {renderIntroScreen} from './switch-screen';
-renderIntroScreen();
+import Router from './router';
+// Router.showIntro();
+export default Router.showIntro();

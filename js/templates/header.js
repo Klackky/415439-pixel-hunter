@@ -1,4 +1,3 @@
-import {roundTime} from '../utils/game-utils';
 import AbstractView from '../abstract-view';
 export default class HeaderTemplate extends AbstractView {
   constructor(state) {
@@ -8,9 +7,18 @@ export default class HeaderTemplate extends AbstractView {
   get template() {
     return `<header class="header">
         ${arrowBack}
-        ${timer(this.state.time)}
+        ${timerTemplate(this.state.time)}
         ${gameLives(this.state.lives)}
       </header>`;
+  }
+  onBackButton() {
+
+  }
+  bind(element) {
+    const backButton = element.querySelector(`.back`);
+    backButton.addEventListener(`click`, () => {
+      this.onBackButton();
+    });
   }
 }
 
@@ -33,6 +41,6 @@ ${new Array(gameState)
 </div>
 `;
 
-export const timer = (time) => `
-  <h1 class="game__timer">${roundTime(time).minutes}:${roundTime(time).seconds} </h1>
+export const timerTemplate = (time) => `
+  <h1 class="game__timer">${time} </h1>
 `;
