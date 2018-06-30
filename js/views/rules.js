@@ -1,7 +1,7 @@
 import AbstractView from '../abstract-view';
 import {arrowBack} from '../templates/header';
 import FooterTemplate from '../templates/footer';
-export default class RulesScreen extends AbstractView {
+export default class RulesView extends AbstractView {
   constructor() {
     super();
   }

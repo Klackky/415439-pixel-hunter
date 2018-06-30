@@ -1,4 +1,4 @@
-import {playerData} from '../data/gameData';
+import INITIAL_GAME_STATE from '../data/gameData';
 const ANSWERS_OPTIONS_TIME = {
   slowAnswer: 20,
   fastanswer: 10,
@@ -8,10 +8,9 @@ const TIME = {
   minute: 60,
   maxSeconds: 9
 };
+
 export const gameReset = () => {
-  playerData.level = 0;
-  playerData.answers = [];
-  playerData.lives = 3;
+  return JSON.parse(JSON.stringify(INITIAL_GAME_STATE));
 };
 /**
  * Function rounds time
@@ -56,7 +55,7 @@ export const checkAnswers = (answers, currentLevel) => {
 export const filterAnswers = (level) => {
   const fastAnswers = level.answers.filter((answer) => (answer.time < ANSWERS_OPTIONS_TIME.fastanswer));
   const slowAnswers = level.answers.filter((answer) => (answer.time > ANSWERS_OPTIONS_TIME.slowAnswer));
-  const correctAnswers = level.answers.filter((answer) => answer.isCorrect);
+  const correctAnswers = level.answers.filter((answer) => answer.answer);
   const filteredAnswers = {
     fastAnswers,
     slowAnswers,

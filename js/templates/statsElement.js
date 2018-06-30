@@ -1,9 +1,16 @@
+import AbstractView from '../abstract-view';
+export default class StatsBarTemplate extends AbstractView {
+  constructor(state) {
+    super();
+    this.state = state;
+  }
+  get template() {
+    return `<div class="stats"> <ul class="stats">
+    ${this.state.answers.map((answer) => `<li class="stats__result stats__result--${checkState(answer)}"></li>`).join(``)}
+    </ul> </div>`;
+  }
+}
 
-const statsTemplate = (answers) => `
-    <ul class="stats">
-    ${answers.map((answer) => `<li class="stats__result stats__result--${checkState(answer)}"></li>`).join(``)}
-    </ul>
-`;
 /**
  * Function calculate points based on player`s performance
  *
@@ -24,4 +31,3 @@ const checkState = (answer) => {
   }
   return result;
 };
-export default statsTemplate;
