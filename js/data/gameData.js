@@ -6,4 +6,7 @@ const INITIAL_GAME_STATE = {
 };
 Object.freeze(INITIAL_GAME_STATE);
 export const previousGames = [];
+export const adaptServerData = (data) => {
+  return data;
+};
 export default INITIAL_GAME_STATE;

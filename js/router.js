@@ -5,10 +5,29 @@ import RulesPresenter from './presenters/rulesPresenter';
 import StatsScreenPresenter from './presenters/statsScreenPresenter';
 import GamePresenter from './presenters/GamePresenter';
 import GameModel from './gameModel';
+import {adaptServerData} from './utils/game-utils';
+const SERVER_URL = `https://es.dump.academy/pixel-hunter/questions`;
+const checkStatus = (response) => {
+  if (response.status >= 200 && response.status < 300) {
+    return response;
+  } else {
+    throw new Error(`${response.status}: ${response.statusText}`);
+  }
+};
+let gameData;
 export default class Router {
   static showIntro() {
     const introView = new IntroScreen();
     renderScreen(introView.element);
+    window.fetch(SERVER_URL).
+      then(checkStatus).
+      then((response)=> response.json()).
+      then((data) => {
+        gameData = adaptServerData(data);
+      }).
+
+    //  catch((err) => console.error(err)).
+      then(() => Router.showGreetingScreen());
   }
   static showGreetingScreen() {
     const greetingScreenView = new GreetingScreen();
@@ -19,7 +38,7 @@ export default class Router {
     renderScreen(rulesScreenView.element);
   }
   static showGameScreen(playerName) {
-    const gameScreen = new GamePresenter(new GameModel(playerName));
+    const gameScreen = new GamePresenter(new GameModel(playerName, gameData));
     renderScreen(gameScreen.element);
     gameScreen.start();
   }

@@ -10,7 +10,7 @@ export default class GameScreen extends AbstractView {
   get template() {
     return `
     <div class="game">
-      <p class="game__task">${this.state.task}</p>
+      <p class="game__task">${this.state.question}</p>
     ${renderQuestions(this.state)}
     </div>`;
   }
@@ -21,8 +21,8 @@ export default class GameScreen extends AbstractView {
 
 
   bind(element) {
-    switch (this.state.gameType) {
-      case `game1`: {
+    switch (this.state.type) {
+      case `two-of-two`: {
         const gameForm = element.querySelector(`.game__content`);
         const checkRadioButtons = () => {
           const answers = Array.from(gameForm.querySelectorAll(`input:checked`));
@@ -34,7 +34,7 @@ export default class GameScreen extends AbstractView {
         break;
       }
 
-      case `game2`: {
+      case `tinder-like`: {
         const form = element.querySelector(`.game__content`);
         form.addEventListener(`change`, () => {
           const answers = Array.from(form.querySelectorAll(`input:checked`));
@@ -46,11 +46,11 @@ export default class GameScreen extends AbstractView {
         break;
       }
 
-      case `game3`: {
+      case `one-of-three`: {
         const answers = Array.from(element.querySelectorAll(`.game__option`));
         answers.forEach((answer, index) => {
           answer.addEventListener(`click`, () => {
-            this.onAnswer(this.state.questions[index].type === `paint`);
+            this.onAnswer(this.state.answers[index].type === `paint`);
           });
         });
         break;

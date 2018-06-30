@@ -1,19 +1,19 @@
 import {assert} from 'chai';
 import calculatePoints from '../utils/calc-points';
 const correctNormalAnswer = {
-  isCorrect: true,
+  answer: true,
   time: 15
 };
 const correctFastAnswer = {
-  isCorrect: true,
+  answer: true,
   time: 8
 };
 const correctSlowAnswer = {
-  isCorrect: true,
+  answer: true,
   time: 29
 };
 const incorrectAnswer = {
-  isCorrect: false,
+  answer: false,
   time: 29
 };
 const testCases = [

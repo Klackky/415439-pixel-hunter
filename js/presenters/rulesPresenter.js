@@ -18,6 +18,6 @@ export default class RulesScreen {
   }
 
   onSubmit() {
-    Router.showGameScreen(`vasya`);
+    Router.showGameScreen();
   }
 }

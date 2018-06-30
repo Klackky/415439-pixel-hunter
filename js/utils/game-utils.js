@@ -39,7 +39,7 @@ export const roundTime = (time) => {
 
 export const checkAnswers = (answers, currentLevel) => {
   for (const [index, question] of answers.entries()) {
-    if (question.value !== currentLevel.questions[index].type) {
+    if (question.value !== currentLevel.answers[index].type) {
       return false;
     }
   }
@@ -62,4 +62,22 @@ export const filterAnswers = (level) => {
     correctAnswers
   };
   return filteredAnswers;
+};
+
+const preprocessAnswers = (answer) => {
+  let result = ``;
+  if (answer === `painting`) {
+    result += `paint`;
+  } else {
+    result += `photo`;
+  }
+  return result;
+};
+export const adaptServerData = (data) => {
+  for (const level of Object.values(data)) {
+    level.answers.map((answer) => {
+      answer.type = preprocessAnswers(answer.type);
+    });
+  }
+  return data;
 };
