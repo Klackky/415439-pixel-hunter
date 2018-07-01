@@ -53,7 +53,7 @@ class GamePresenter {
       --this.model.state.lives;
     }
     if (this.model.state.lives === GAME_STANDARTS.minLives || this.model.state.level === GAME_STANDARTS.maxLevel) {
-      Router.showStats(this.model.state);
+      Router.showStats(this.model.state, `vasya`);
     } else {
       this.changeLevel();
     }
