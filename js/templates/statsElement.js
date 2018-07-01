@@ -6,11 +6,26 @@ export default class StatsBarTemplate extends AbstractView {
   }
   get template() {
     return `<div class="stats"> <ul class="stats">
-    ${this.state.answers.map((answer) => `<li class="stats__result stats__result--${checkState(answer)}"></li>`).join(``)}
+    ${renderStatsBar(this.state.answers)}
     </ul> </div>`;
   }
 }
 
+
+const renderStatsBar = (answers) => {
+  const answersType = answers.map((answer) => {
+    return checkState(answer);
+  });
+  let markup = answersType.reduce((acc, value) => {
+    return acc + `<li class="stats__result stats__result--${value}"></li>`;
+  }, ``);
+  if (answersType.length < 10) {
+    for (let i = 0; i < 10 - answers.length; i++) {
+      markup += `<li class="stats__result stats__result--unknown"></li>`;
+    }
+  }
+  return markup;
+};
 /**
  * Function calculate points based on player`s performance
  *
@@ -20,14 +35,17 @@ export default class StatsBarTemplate extends AbstractView {
  */
 const checkState = (answer) => {
   let result;
-  if (answer.answer && answer.time < 10) {
-    result = `fast`;
-  } if (answer.answer && answer.time > 20) {
-    result = `slow`;
-  } if (!answer.answer) {
-    result = `wrong`;
+  if (answer.answer) {
+    if (answer.time < 10) {
+      result = `fast`;
+    } else if (answer.time > 20) {
+      result = `slow`;
+    } else {
+      result = `correct`;
+    }
   } else {
-    result = `correct`;
+    result = `wrong`;
   }
+
   return result;
 };
