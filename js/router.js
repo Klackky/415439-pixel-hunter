@@ -5,6 +5,7 @@ import RulesPresenter from './presenters/rulesPresenter';
 import StatsScreenPresenter from './presenters/statsScreenPresenter';
 import GamePresenter from './presenters/GamePresenter';
 import ErrorView from './views/error-screen';
+import ModalView from './views/modal-confirm';
 import GameModel from './gameModel';
 import {adaptServerData} from './utils/game-utils';
 import Loader from './loader';
@@ -48,10 +49,20 @@ export default class Router {
     const errorView = new ErrorView(error);
     renderScreen(errorView.element);
   }
-  static showStats(model, username) {
-    const statsScreenView = new StatsScreenPresenter(model, username);
-    Loader.saveResults(model, username).
-         then(() => Loader.loadResults(username)).
+  static showModalWindow(onBackButton) {
+    const wrapper = document.querySelector(`.central`);
+    const confirmScreen = new ModalView();
+    const modalElement = confirmScreen.element;
+    confirmScreen.onClose = confirmScreen.onCancel = () => {
+      wrapper.removeChild(modalElement);
+    };
+    confirmScreen.onSubmit = onBackButton;
+    wrapper.appendChild(modalElement);
+  }
+  static showStats(model, playerName) {
+    const statsScreenView = new StatsScreenPresenter(model, playerName);
+    Loader.saveResults(model, playerName).
+         then(() => Loader.loadResults(playerName)).
          then((data) => statsScreenView.showScores(data)).
          then(() => renderScreen(statsScreenView.element)).
          catch(Router.showError);

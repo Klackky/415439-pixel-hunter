@@ -1,21 +1,18 @@
 import GameScreen from '../views/gameScreenView';
 import HeaderTemplate from '../templates/header';
-import StatsBarTemplate from '../templates/statsElement';
 import FooterTemplate from '../templates/footer';
 import {GameStandarts} from '../game-consts';
 import Router from '../router';
-
+const ONE_SECOND = 1000;
 
 class GamePresenter {
   constructor(model) {
     this.model = model;
-    this.content = new GameScreen(this.model.getCurrentLevel());
+    this.content = new GameScreen(this.model.getCurrentLevel(), this.model.state);
     this.header = new HeaderTemplate(this.model.state);
-    this.statsBar = new StatsBarTemplate(this.model.state);
     this.root = document.createElement(`div`);
     this.root.appendChild(this.header.element);
     this.root.appendChild(this.content.element);
-    this.root.appendChild(this.statsBar.element);
     this.root.appendChild(new FooterTemplate().element);
     this._interval = null;
   }
@@ -38,7 +35,7 @@ class GamePresenter {
         this.changeLevel();
       }
       this.updateHeader();
-    }, 1000);
+    }, ONE_SECOND);
   }
 
   onAnswer(isCorrect) {
@@ -48,14 +45,15 @@ class GamePresenter {
       --this.model.state.lives;
     }
     if (this.model.state.lives === GameStandarts.MIN_LIVES || this.model.state.level === GameStandarts.MAX_LEVEL) {
-      Router.showStats(this.model.state, `vasya`);
+      this.model.endGame();
     } else {
       this.changeLevel();
     }
   }
 
   onBackButton() {
-    Router.showGreetingScreen();
+    this.stopGame();
+    Router.showModalWindow();
     this.model.restart();
   }
 
@@ -64,15 +62,16 @@ class GamePresenter {
   }
 
   restartGame() {
+    this.stopGame();
     this.model.restart();
   }
 
   changeLevel() {
+    this.stopGame();
     this.model.restartTimer();
-    this.startTimer();
     this.updateHeader();
-    this.updateStatsBar();
-    const nextLevel = new GameScreen(this.model.nextLevel());
+    this.startTimer();
+    const nextLevel = new GameScreen(this.model.nextLevel(), this.model.state);
     nextLevel.onAnswer = this.onAnswer.bind(this);
     this.updateView(nextLevel);
   }
@@ -83,16 +82,11 @@ class GamePresenter {
   }
 
   updateHeader() {
-    const header = new HeaderTemplate(this.model.state);
+    const header = new HeaderTemplate(this.model.state, this.model.time);
     this.root.replaceChild(header.element, this.header.element);
     this.header = header;
     this.header.onBackButton = this.onBackButton.bind(this);
   }
 
-  updateStatsBar() {
-    const statsBar = new StatsBarTemplate(this.model.state);
-    this.root.replaceChild(statsBar.element, this.statsBar.element);
-    this.statsBar = statsBar;
-  }
 }
 export default GamePresenter;

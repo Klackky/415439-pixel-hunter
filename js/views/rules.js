@@ -33,11 +33,13 @@ export default class RulesView extends AbstractView {
 
   }
 
+
   onBackButton() {
 
   }
 
   bind(element) {
+    const inputForm = element.querySelector(`.rules__input`);
     const backButton = element.querySelector(`.back`);
     backButton.addEventListener(`click`, () => {
       this.onBackButton();
@@ -48,7 +50,8 @@ export default class RulesView extends AbstractView {
       submitButton.disabled = false;
     });
     submitButton.addEventListener(`click`, () => {
-      this.onSubmit();
+      const name = inputForm.value;
+      this.onSubmit(name);
       submitButton.disabled = true;
     });
   }

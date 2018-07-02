@@ -17,6 +17,16 @@
   transform: translateX(-50%);
 }
 
+.blinking{
+	animation:blinkingTimer 1s linear infinite;
+}
+
+@keyframes blinkingTimer{
+  50% {
+    opacity: 0;
+  }
+}
+
 .game__lives {
   position: absolute;
   top: 20px;

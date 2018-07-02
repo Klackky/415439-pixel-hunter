@@ -6,7 +6,6 @@
  * @param {object} image image size
  * @return {object} new image
  */
-
 const resize = (frame, image) => {
   const maxWidth = frame.width;
   const maxHeight = frame.height;

@@ -1,6 +1,5 @@
 import Router from '../router';
 import RulesView from '../views/rules';
-
 export default class RulesScreen {
   constructor() {
     this.content = new RulesView();
@@ -17,7 +16,7 @@ export default class RulesScreen {
     this.content.onSubmit = this.onSubmit.bind(this);
   }
 
-  onSubmit() {
-    Router.showGameScreen();
+  onSubmit(name) {
+    Router.showGameScreen(name);
   }
 }

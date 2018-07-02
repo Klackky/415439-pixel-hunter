@@ -1,9 +1,11 @@
 import AbstractView from '../abstract-view';
 import {checkAnswers} from '../utils/game-utils';
 import renderQuestions from '../templates/questions';
+import StatsBarTemplate from '../templates/statsElement';
 export default class GameScreen extends AbstractView {
-  constructor(state) {
+  constructor(state, level) {
     super();
+    this.level = level;
     this.state = state;
   }
 
@@ -12,6 +14,7 @@ export default class GameScreen extends AbstractView {
     <div class="game">
       <p class="game__task">${this.state.question}</p>
     ${renderQuestions(this.state)}
+    ${new StatsBarTemplate(this.level).template}
     </div>`;
   }
 
@@ -49,7 +52,11 @@ export default class GameScreen extends AbstractView {
         const answers = Array.from(element.querySelectorAll(`.game__option`));
         answers.forEach((answer, index) => {
           answer.addEventListener(`click`, () => {
-            this.onAnswer(this.state.answers[index].type === `paint`);
+            if (this.state.question === `Найдите рисунок среди изображений`) {
+              this.onAnswer(this.state.answers[index].type === `paint`);
+            } else {
+              this.onAnswer(this.state.answers[index].type === `photo`);
+            }
           });
         });
         break;

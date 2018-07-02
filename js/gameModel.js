@@ -1,5 +1,6 @@
 import {gameReset} from './utils/game-utils';
 import {GameStandarts} from './game-consts';
+import Router from './router';
 
 class GameModel {
   constructor(name, gameData) {
@@ -24,6 +25,9 @@ class GameModel {
   }
   tick() {
     this._timer = this._state.time--;
+  }
+  endGame() {
+    Router.showStats(this._state, this.name);
   }
   restartTimer() {
     this._state.time = GameStandarts.TIMER_TIME;
