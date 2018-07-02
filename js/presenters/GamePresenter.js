@@ -2,14 +2,9 @@ import GameScreen from '../views/gameScreenView';
 import HeaderTemplate from '../templates/header';
 import StatsBarTemplate from '../templates/statsElement';
 import FooterTemplate from '../templates/footer';
-import {previousGames} from '../data/gameData';
+import {GameStandarts} from '../game-consts';
 import Router from '../router';
 
-const GAME_STANDARTS = {
-  minLives: 0,
-  maxLevel: 9,
-  timerTime: 30
-};
 
 class GamePresenter {
   constructor(model) {
@@ -48,11 +43,11 @@ class GamePresenter {
 
   onAnswer(isCorrect) {
     this.stopGame();
-    this.model.state.answers.push({answer: isCorrect, time: GAME_STANDARTS.timerTime - this.model.state.time});
+    this.model.state.answers.push({answer: isCorrect, time: GameStandarts.TIMER_TIME - this.model.state.time});
     if (!isCorrect) {
       --this.model.state.lives;
     }
-    if (this.model.state.lives === GAME_STANDARTS.minLives || this.model.state.level === GAME_STANDARTS.maxLevel) {
+    if (this.model.state.lives === GameStandarts.MIN_LIVES || this.model.state.level === GameStandarts.MAX_LEVEL) {
       Router.showStats(this.model.state, `vasya`);
     } else {
       this.changeLevel();
@@ -61,7 +56,6 @@ class GamePresenter {
 
   onBackButton() {
     Router.showGreetingScreen();
-    previousGames.push(this.model.state);
     this.model.restart();
   }
 

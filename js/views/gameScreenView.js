@@ -39,7 +39,6 @@ export default class GameScreen extends AbstractView {
         form.addEventListener(`change`, () => {
           const answers = Array.from(form.querySelectorAll(`input:checked`));
           if (answers.some((answer) => answer.checked)) {
-            checkAnswers(answers, this.state);
             this.onAnswer(checkAnswers(answers, this.state));
           }
         });

@@ -1,12 +1,10 @@
 import INITIAL_GAME_STATE from '../data/gameData';
-const ANSWERS_OPTIONS_TIME = {
-  slowAnswer: 20,
-  fastanswer: 10,
-};
-const TIME = {
-  seconds: 3600,
-  minute: 60,
-  maxSeconds: 9
+import {AnswersTime} from '../game-consts';
+
+const TimeUtils = {
+  SECONDS: 3600,
+  MINUTE: 60,
+  MAX_SECONDS: 9
 };
 
 export const gameReset = () => {
@@ -20,11 +18,11 @@ export const gameReset = () => {
  * @return {number} time in minutes
  */
 export const roundTime = (time) => {
-  const minutes = Math.floor((time % TIME.seconds) / TIME.minute);
-  const seconds = time % TIME.minute;
+  const minutes = Math.floor((time % TimeUtils.SECONDS) / TimeUtils.MINUTE);
+  const seconds = time % TimeUtils.MINUTE;
   const roundedTime = {
     minutes,
-    seconds: seconds > TIME.maxSeconds ? seconds : `0` + seconds,
+    seconds: seconds > TimeUtils.MAX_SECONDS ? seconds : `0` + seconds,
   };
   return roundedTime;
 };
@@ -53,8 +51,8 @@ export const checkAnswers = (answers, currentLevel) => {
  * @return {object} object of filtered arrays
  */
 export const filterAnswers = (level) => {
-  const fastAnswers = level.answers.filter((answer) => (answer.time < ANSWERS_OPTIONS_TIME.fastanswer));
-  const slowAnswers = level.answers.filter((answer) => (answer.time > ANSWERS_OPTIONS_TIME.slowAnswer));
+  const fastAnswers = level.answers.filter((answer) => (answer.time < AnswersTime.FAST_ANSWER));
+  const slowAnswers = level.answers.filter((answer) => (answer.time > AnswersTime.SLOW_ANSWER));
   const correctAnswers = level.answers.filter((answer) => answer.answer);
   const filteredAnswers = {
     fastAnswers,

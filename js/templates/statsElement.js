@@ -1,4 +1,6 @@
 import AbstractView from '../abstract-view';
+import {GameStandarts} from '../game-consts';
+import {AnswersTime} from '../game-consts';
 export default class StatsBarTemplate extends AbstractView {
   constructor(state) {
     super();
@@ -19,8 +21,8 @@ const renderStatsBar = (answers) => {
   let markup = answersType.reduce((acc, value) => {
     return acc + `<li class="stats__result stats__result--${value}"></li>`;
   }, ``);
-  if (answersType.length < 10) {
-    for (let i = 0; i < 10 - answers.length; i++) {
+  if (answersType.length < GameStandarts.MIN_ANSWERS) {
+    for (let i = 0; i < GameStandarts.MIN_ANSWERS - answers.length; i++) {
       markup += `<li class="stats__result stats__result--unknown"></li>`;
     }
   }
@@ -36,9 +38,9 @@ const renderStatsBar = (answers) => {
 const checkState = (answer) => {
   let result;
   if (answer.answer) {
-    if (answer.time < 10) {
+    if (answer.time < AnswersTime.FAST_ANSWER) {
       result = `fast`;
-    } else if (answer.time > 20) {
+    } else if (answer.time > AnswersTime.SLOW_ANSWER) {
       result = `slow`;
     } else {
       result = `correct`;

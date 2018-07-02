@@ -4,7 +4,7 @@ import AbstractView from '../abstract-view';
 import {arrowBack} from '../templates/header';
 import StatsTemplate from '../templates/statsElement';
 import {filterAnswers} from '../utils/game-utils';
-import {POINTS} from '../utils/calc-points';
+import {Points} from '../game-consts';
 import createNewDomElement from '../utils/create-new-element';
 export default class StatsScreen extends AbstractView {
   constructor(state) {
@@ -24,28 +24,28 @@ export default class StatsScreen extends AbstractView {
    ${new StatsTemplate(this.state).template}
            </td>
            <td class="result__points">×&nbsp;100</td>
-           <td class="result__total">${filterAnswers(this.state).correctAnswers.length * POINTS.regularPoints}</td>
+           <td class="result__total">${filterAnswers(this.state).correctAnswers.length * Points.REGULAR_POINTS}</td>
          </tr>
          <tr>
            <td></td>
            <td class="result__extra">Бонус за скорость:</td>
            <td class="result__extra">${filterAnswers(this.state).fastAnswers.length}&nbsp;<span class="stats__result stats__result--fast"></span></td>
            <td class="result__points">×&nbsp;50</td>
-           <td class="result__total">${filterAnswers(this.state).fastAnswers.length * POINTS.extraPoints}</td>
+           <td class="result__total">${filterAnswers(this.state).fastAnswers.length * Points.EXTRA_POINTS}</td>
          </tr>
          <tr>
            <td></td>
            <td class="result__extra">Бонус за жизни:</td>
            <td class="result__extra">${this.state.lives}&nbsp;<span class="stats__result stats__result--alive"></span></td>
            <td class="result__points">×&nbsp;50</td>
-           <td class="result__total">${this.state.lives * POINTS.extraPoints}</td>
+           <td class="result__total">${this.state.lives * Points.EXTRA_POINTS}</td>
          </tr>
          <tr>
            <td></td>
            <td class="result__extra">Штраф за медлительность:</td>
            <td class="result__extra">${filterAnswers(this.state).slowAnswers.length}&nbsp;<span class="stats__result stats__result--slow"></span></td>
            <td class="result__points">×&nbsp;50</td>
-           <td class="result__total">${filterAnswers(this.state).slowAnswers.length !== 0 ? (filterAnswers(this.state).slowAnswers.length * POINTS.extraPoints) : 0}</td>
+           <td class="result__total">${filterAnswers(this.state).slowAnswers.length !== 0 ? (filterAnswers(this.state).slowAnswers.length * Points.EXTRA_POINTS) : 0}</td>
          </tr>
          <tr>
            <td colspan="5" class="result__total  result__total--final">${calculatePoints(this.state.answers, this.state.lives)}</td>
@@ -78,14 +78,14 @@ export default class StatsScreen extends AbstractView {
         ${new StatsTemplate(game).template}
         </td>
         <td class="result__points">×&nbsp;100</td>
-        <td class="result__total">${filterAnswers(game).correctAnswers.length * POINTS.regularPoints}</td>
+        <td class="result__total">${filterAnswers(game).correctAnswers.length * Points.REGULAR_POINTS}</td>
       </tr>
       <tr>
         <td></td>
         <td class="result__extra">Бонус за жизни:</td>
         <td class="result__extra">${game.lives}&nbsp;<span class="stats__result stats__result--alive"></span></td>
         <td class="result__points">×&nbsp;50</td>
-        <td class="result__total">${game.lives * POINTS.extraPoints}</td>
+        <td class="result__total">${game.lives * Points.EXTRA_POINTS}</td>
       </tr>
       <tr>
         <td colspan="5" class="result__total  result__total--final">${calculatePoints(game.answers, game.lives)}</td>

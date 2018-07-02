@@ -1,15 +1,7 @@
-export const POINTS = {
-  regularPoints: 100,
-  extraPoints: 50
-};
-const ANSWER_TIME = {
-  slowAnswer: 20,
-  fastAnswer: 10
-};
-const MINIMUM_REQUIREMENT = {
-  lives: 1,
-  answers: 10
-};
+import {AnswersTime} from '../game-consts';
+import {Points} from '../game-consts';
+import {MinimumRequirement} from '../game-consts';
+
 /**
  * Function calculate points based on player`s performance
  *
@@ -18,18 +10,18 @@ const MINIMUM_REQUIREMENT = {
  * @param {number} lives remaining lives
  * @return {number} final points
  */
-const calculatePoints = (answers, lives = 3) => {
+const calculatePoints = (answers, lives) => {
   const correctAnswersArray = answers.filter((answer) => answer.answer);
-  const fastAnswersArray = answers.filter((answer) => answer.time < ANSWER_TIME.fastAnswer);
-  const slowAnswersArray = answers.filter((answer) => answer.time > ANSWER_TIME.slowAnswer);
+  const fastAnswersArray = answers.filter((answer) => answer.time < AnswersTime.FAST_ANSWER);
+  const slowAnswersArray = answers.filter((answer) => answer.time > AnswersTime.SLOW_ANSWER);
   let points = 0;
-  if (lives < MINIMUM_REQUIREMENT.lives || answers.length < MINIMUM_REQUIREMENT.answers) {
+  if (lives < MinimumRequirement.LIVES || answers.length < MinimumRequirement.ANSWERS) {
     return -1;
   }
-  points += ((correctAnswersArray.length) * POINTS.regularPoints);
-  points += ((fastAnswersArray.length) * POINTS.extraPoints);
-  points -= ((slowAnswersArray.length) * POINTS.extraPoints);
-  points += lives * POINTS.extraPoints;
+  points += ((correctAnswersArray.length) * Points.REGULAR_POINTS);
+  points += ((fastAnswersArray.length) * Points.EXTRA_POINTS);
+  points -= ((slowAnswersArray.length) * Points.EXTRA_POINTS);
+  points += lives * Points.EXTRA_POINTS;
   return points;
 };
 export default calculatePoints;
