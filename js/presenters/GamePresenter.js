@@ -49,6 +49,7 @@ class GamePresenter {
     }
     if (this.model.state.lives === GameStandarts.MIN_LIVES || this.model.state.level === GameStandarts.MAX_LEVEL) {
       this.model.endGame();
+      this.stopGame();
     } else {
       this.changeLevel();
     }

@@ -19,12 +19,12 @@ export const resizeRenderedImages = () => {
 
   images.forEach((image) => {
     image.onload = () => {
-      const realImagesDimensions = resize(
+      const realImageDimensions = resize(
           {width: image.width, height: image.height},
           {width: image.naturalWidth, height: image.naturalHeight}
       );
-      image.height = realImagesDimensions.height;
-      image.width = realImagesDimensions.width;
+      image.height = realImageDimensions.height;
+      image.width = realImageDimensions.width;
     };
   });
 };

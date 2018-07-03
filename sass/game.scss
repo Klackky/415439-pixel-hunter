@@ -26,6 +26,36 @@
     opacity: 0;
   }
 }
+.game__option {
+   position: relative;
+   cursor: pointer;
+}
+.game__option .tooltiptext {
+  visibility: hidden;
+    width: 120px;
+    background-color: white;
+    font-color: black;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 6px;
+    padding: 5px 0;
+    left: 40%;
+    right: 50%;
+    top: 50%;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+.game__option:hover .tooltiptext{
+    outline: 2px solid red;
+    visibility: visible;
+  }
+
+
+//.paint img:hover {
+//  outline: 2px solid green;
+//}
 
 .game__lives {
   position: absolute;
@@ -45,7 +75,7 @@
   justify-content: space-between;
 }
 
-.game__option {
+.game__option  {
   position: relative;
   border: 10px solid transparent;
 
@@ -55,7 +85,9 @@
 
   text-align: center;
   vertical-align: middle;
+
 }
+
 
 .game__answer input {
   position: absolute;

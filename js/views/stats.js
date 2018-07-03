@@ -60,7 +60,7 @@ export default class StatsScreen extends AbstractView {
   showScores(scores) {
     let string = ``;
     scores.pop();
-    scores.map((game, index) => {
+    scores.reverse().map((game, index) => {
       if (calculatePoints(game.answers) === -1) {
         string += `<table class="result__table">
        <tr>
