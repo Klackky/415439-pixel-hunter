@@ -51,7 +51,7 @@ export default class GameScreen extends AbstractView {
       case `one-of-three`: {
         const answers = Array.from(element.querySelectorAll(`.game__option`));
         answers.forEach((answer, index) => {
-          answer.addEventListener(`click`, () => {
+          answer.addEventListener(`mouseup`, () => {
             if (this.state.question === `Найдите рисунок среди изображений`) {
               this.onAnswer(this.state.answers[index].type === `paint`);
             } else {
