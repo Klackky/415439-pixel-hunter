@@ -1,4 +1,5 @@
 import AbstractView from '../abstract-view';
+import createTimer from '../utils/timer';
 const lostLife = `<img src="img/heart__empty.svg" class="game__heart" alt="Life" width="32" height="32">`;
 const savedLife = `<img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">`;
 export default class HeaderTemplate extends AbstractView {
@@ -6,21 +7,11 @@ export default class HeaderTemplate extends AbstractView {
     super();
     this.state = state;
   }
-  blinkTimer() {
-    if (this.state.time) {
-      let timerBlink = ``;
-      if (this.state.time <= 5) {
-        timerBlink += `blinking`;
-      }
-      return `<h1 class="game__timer ${timerBlink}">${this.state.time}</h1>`;
-    }
-    return ``;
-  }
 
   get template() {
     return `<header class="header">
         ${arrowBack}
-        ${this.blinkTimer(this.state.time)}
+        <h1 class="game__timer"> ${createTimer(this.state.time).countdown}  </h1>
         <div class="game__lives">
         ${new Array(3 - this.state.lives).fill(lostLife).join(``)}
         ${new Array(this.state.lives < 0 ? 0 : this.state.lives).fill(savedLife).join(``)}
@@ -36,6 +27,14 @@ export default class HeaderTemplate extends AbstractView {
     backButton.addEventListener(`click`, () => {
       this.onBackButton();
     });
+  }
+
+  blinkTimer(time) {
+    const timer = this.element.querySelector(`.game__timer`);
+    if (this.state.time <= 5) {
+      timer.classList.add(`blinking`);
+    }
+    timer.textContent = time;
   }
 }
 

@@ -7,13 +7,27 @@
  * @return {object} new image
  */
 const resize = (frame, image) => {
-  const maxWidth = frame.width;
-  const maxHeight = frame.height;
-  const imageWidth = image.width;
-  const imageHeight = image.height;
-  let ratio = [maxWidth / imageWidth, maxHeight / imageHeight];
-  ratio = Math.min(ratio[0], ratio[1]);
-  return {width: imageWidth * ratio, height: imageHeight * ratio};
+  const ratio = Math.min(frame.width / image.width, frame.height / image.height);
+
+  return {width: image.width * ratio, height: image.height * ratio};
 };
+
+
+export const resizeRenderedImages = () => {
+  const imagesContainer = document.querySelector(`.game__content`);
+  const images = imagesContainer.querySelectorAll(`img`);
+
+  images.forEach((image) => {
+    image.onload = () => {
+      const realImagesDimensions = resize(
+          {width: image.width, height: image.height},
+          {width: image.naturalWidth, height: image.naturalHeight}
+      );
+      image.height = realImagesDimensions.height;
+      image.width = realImagesDimensions.width;
+    };
+  });
+};
+
 
 export default resize;

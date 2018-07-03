@@ -2,6 +2,8 @@ import GameScreen from '../views/gameScreenView';
 import HeaderTemplate from '../templates/header';
 import FooterTemplate from '../templates/footer';
 import {GameStandarts} from '../game-consts';
+// import resizeImages from '../utils/resize';
+import {resizeRenderedImages} from '../utils/resize';
 import Router from '../router';
 const ONE_SECOND = 1000;
 
@@ -24,6 +26,7 @@ class GamePresenter {
   start() {
     this.content.onAnswer = this.onAnswer.bind(this);
     this.header.onBackButton = this.onBackButton.bind(this);
+    resizeRenderedImages(this.element);
     this.startTimer();
   }
 
@@ -34,7 +37,7 @@ class GamePresenter {
         this.onAnswer(false);
         this.changeLevel();
       }
-      this.updateHeader();
+      this.header.blinkTimer(this.model.state.time);
     }, ONE_SECOND);
   }
 
@@ -79,6 +82,7 @@ class GamePresenter {
   updateView(view) {
     this.root.replaceChild(view.element, this.content.element);
     this.content = view;
+    resizeRenderedImages(view.element);
   }
 
   updateHeader() {

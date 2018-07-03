@@ -11,7 +11,7 @@ const renderQuestions = (level) => {
     return `
     <form class="game__content">
     ${level.answers.map((question, index) => `<div class="game__option">
-          <img src="${question.image.url}" alt="Option ${index}" width="${question.image.width}" height="${question.image.height}">
+          <img src="${question.image.url}" alt="Option ${index}" width="468" height="458">
           <label class="game__answer game__answer--photo">
             <input name="question${index}" type="radio" value="photo">
             <span>Фото</span>
@@ -27,7 +27,7 @@ const renderQuestions = (level) => {
     return `
       <form class="game__content  game__content--wide">
     <div class="game__option">
-      <img src="${level.answers[0].image.url}" alt="Option 1" width="${level.answers[0].image.width}" height="${level.answers[0].image.height}">
+      <img src="${level.answers[0].image.url}" alt="Option 1" width="705" height="455">
       <label class="game__answer  game__answer--photo">
         <input name="question1" type="radio" value="photo">
         <span>Фото</span>
@@ -43,10 +43,11 @@ const renderQuestions = (level) => {
   return `
   <form class="game__content  game__content--triple">
   ${level.answers.map((question, index) => `<div class="game__option">
-          <img src="${question.image.url}" alt="Option ${index}" width="${question.image.width}" height="${question.image.height}">
+          <img src="${question.image.url}" alt="Option ${index}" width="304" height="455">
         </div>`)
 }</form>
 `;
 
 };
+
 export default renderQuestions;
