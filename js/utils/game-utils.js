@@ -1,31 +1,17 @@
 import INITIAL_GAME_STATE from '../data/gameData';
 import {AnswersTime} from '../game-consts';
 
-const TimeUtils = {
-  SECONDS: 3600,
-  MINUTE: 60,
-  MAX_SECONDS: 9
-};
 
+/**
+ * Function returns initial game state
+ *
+ * @function gameReset
+ * @return {object} initial game state
+*/
 export const gameReset = () => {
   return JSON.parse(JSON.stringify(INITIAL_GAME_STATE));
 };
-/**
- * Function rounds time
- *
- * @function roundTime
- * @param {number} time time in seconds
- * @return {number} time in minutes
- */
-export const roundTime = (time) => {
-  const minutes = Math.floor((time % TimeUtils.SECONDS) / TimeUtils.MINUTE);
-  const seconds = time % TimeUtils.MINUTE;
-  const roundedTime = {
-    minutes,
-    seconds: seconds > TimeUtils.MAX_SECONDS ? seconds : `0` + seconds,
-  };
-  return roundedTime;
-};
+
 /**
  * Function checks if answer correct
  *
@@ -34,7 +20,6 @@ export const roundTime = (time) => {
  * @param {object} currentLevel current level
  * @return {object} answer
  */
-
 export const checkAnswers = (answers, currentLevel) => {
   for (const [index, question] of answers.entries()) {
     if (question.value !== currentLevel.answers[index].type) {
@@ -43,6 +28,7 @@ export const checkAnswers = (answers, currentLevel) => {
   }
   return true;
 };
+
 /**
  * Function filters array of answers
  *
@@ -62,6 +48,13 @@ export const filterAnswers = (level) => {
   return filteredAnswers;
 };
 
+/**
+ * Function changes 'painting' to 'paint' for more comfortable work with data structure
+ *
+ * @function preprocessAnswers
+ * @param {string} answer
+ * @return {string} new string with our answer
+ */
 const preprocessAnswers = (answer) => {
   let result = ``;
   if (answer === `painting`) {
@@ -71,6 +64,14 @@ const preprocessAnswers = (answer) => {
   }
   return result;
 };
+
+/**
+ * Function adapt data structure we got from server for more comfortable work
+ *
+ * @function adaptServerData
+ * @param {array} data
+ * @return {array} new data we`re going to work with
+ */
 export const adaptServerData = (data) => {
   for (const level of Object.values(data)) {
     level.answers.map((answer) => {

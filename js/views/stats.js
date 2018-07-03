@@ -1,11 +1,12 @@
 import FooterTemplate from '../templates/footer';
 import calculatePoints from '../utils/calc-points';
 import AbstractView from '../abstract-view';
-import {arrowBack} from '../templates/header';
+import {arrowBack} from '../views/header';
 import StatsTemplate from '../templates/statsElement';
 import {filterAnswers} from '../utils/game-utils';
 import {Points} from '../game-consts';
 import createNewDomElement from '../utils/create-new-element';
+const NUMBER_OF_ANSWER = 2;
 export default class StatsScreen extends AbstractView {
   constructor(state) {
     super();
@@ -64,7 +65,7 @@ export default class StatsScreen extends AbstractView {
       if (calculatePoints(game.answers) === -1) {
         string += `<table class="result__table">
        <tr>
-         <td class="result__number">${index + 2}.</td>
+         <td class="result__number">${index + NUMBER_OF_ANSWER}.</td>
          <td>
          ${new StatsTemplate(game).template}
          </td>
@@ -74,7 +75,7 @@ export default class StatsScreen extends AbstractView {
       } else {
         string += `<table class="result__table">
       <tr>
-        <td class="result__number">${index + 2}.</td>
+        <td class="result__number">${index + NUMBER_OF_ANSWER}.</td>
         <td colspan="2">
         ${new StatsTemplate(game).template}
         </td>

@@ -1,5 +1,5 @@
 import AbstractView from '../abstract-view';
-import {arrowBack} from '../templates/header';
+import {arrowBack} from '../views/header';
 import FooterTemplate from '../templates/footer';
 export default class RulesView extends AbstractView {
   constructor() {

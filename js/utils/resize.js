@@ -12,7 +12,11 @@ const resize = (frame, image) => {
   return {width: image.width * ratio, height: image.height * ratio};
 };
 
-
+/**
+ * Function responsible for image Resize
+ * when image loads we getting it`s real dimensions and adapt it to our container
+ * @function resizeRenderedImages
+*/
 export const resizeRenderedImages = () => {
   const imagesContainer = document.querySelector(`.game__content`);
   const images = imagesContainer.querySelectorAll(`img`);

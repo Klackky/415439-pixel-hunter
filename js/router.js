@@ -9,15 +9,23 @@ import ModalView from './views/modal-confirm';
 import GameModel from './gameModel';
 import {adaptServerData} from './utils/game-utils';
 import Loader from './loader';
+
+const ResponseTypes = {
+  MIN_NUMBER: 200,
+  MAX_NUMBER: 300
+};
 const SERVER_URL = `https://es.dump.academy/pixel-hunter/questions`;
+
 const checkStatus = (response) => {
-  if (response.status >= 200 && response.status < 300) {
+  if (response.status >= ResponseTypes.MIN_NUMBER && response.status < ResponseTypes.MAX_NUMBER) {
     return response;
   } else {
     throw new Error(`${response.status}: ${response.statusText}`);
   }
 };
+
 let gameData;
+
 export default class Router {
   static showIntro() {
     const introView = new IntroScreen();
@@ -36,19 +44,23 @@ export default class Router {
     const greetingScreenView = new GreetingScreen();
     renderScreen(greetingScreenView.element);
   }
+
   static showRulesScreen() {
     const rulesScreenView = new RulesPresenter();
     renderScreen(rulesScreenView.element);
   }
+
   static showGameScreen(playerName) {
     const gameScreen = new GamePresenter(new GameModel(playerName, gameData));
     renderScreen(gameScreen.element);
     gameScreen.start();
   }
+
   static showError(error) {
     const errorView = new ErrorView(error);
     renderScreen(errorView.element);
   }
+
   static showModalWindow(onBackButton) {
     const wrapper = document.querySelector(`.central`);
     const confirmScreen = new ModalView();
@@ -59,6 +71,7 @@ export default class Router {
     confirmScreen.onSubmit = onBackButton;
     wrapper.appendChild(modalElement);
   }
+
   static showStats(model, playerName) {
     const statsScreenView = new StatsScreenPresenter(model, playerName);
     Loader.saveResults(model, playerName).
@@ -67,4 +80,5 @@ export default class Router {
          then(() => renderScreen(statsScreenView.element)).
          catch(Router.showError);
   }
+
 }

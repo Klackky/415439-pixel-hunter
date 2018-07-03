@@ -1,5 +1,5 @@
 import GameScreen from '../views/gameScreenView';
-import HeaderTemplate from '../templates/header';
+import HeaderTemplate from '../views/header';
 import FooterTemplate from '../templates/footer';
 import {GameStandarts} from '../game-consts';
 // import resizeImages from '../utils/resize';

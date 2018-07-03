@@ -1,5 +1,3 @@
-import {adaptServerData} from './utils/game-utils';
-
 const SERVER_URL = `https://es.dump.academy/pixel-hunter`;
 const DEFAULT_NAME = `Default name`;
 const APP_ID = 19870714;
@@ -16,10 +14,6 @@ const checkStatus = (response) => {
 const toJSON = (res) => res.json();
 
 export default class Loader {
-  static loadData() {
-    return fetch(`${SERVER_URL}`).then(checkStatus).then(toJSON).then(adaptServerData);
-  }
-
   static loadResults(name = DEFAULT_NAME) {
     return fetch(`${SERVER_URL}/stats/${APP_ID}-${name}`).then(checkStatus).then(toJSON);
   }
