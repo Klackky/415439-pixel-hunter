@@ -1,8 +1,9 @@
 import Router from '../router';
-import RulesView from '../views/rules';
-export default class RulesScreen {
+import IntroView from '../views/intro-view';
+
+export default class IntroScreen {
   constructor() {
-    this.content = new RulesView();
+    this.content = new IntroView();
     this.root = document.createElement(`div`);
     this.root.appendChild(this.content.element);
     this.start();
@@ -13,10 +14,10 @@ export default class RulesScreen {
   }
 
   start() {
-    this.content.onSubmit = this.onSubmit.bind(this);
+    this.content.onClick = this.onClick.bind(this);
   }
 
-  onSubmit(name) {
-    Router.showGameScreen(name);
+  onClick() {
+    Router.showGreetingScreen();
   }
 }

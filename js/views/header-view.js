@@ -1,9 +1,9 @@
 import AbstractView from '../abstract-view';
 import createTimer from '../utils/timer';
 import {GameStandarts} from '../game-consts';
+const BLINK_TIME = 5;
 const lostLife = `<img src="img/heart__empty.svg" class="game__heart" alt="Life" width="32" height="32">`;
 const savedLife = `<img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">`;
-const BLINK_TIME = 5;
 export default class HeaderTemplate extends AbstractView {
   constructor(state) {
     super();

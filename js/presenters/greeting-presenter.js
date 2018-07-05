@@ -1,5 +1,5 @@
 import Router from '../router';
-import GreetingScreen from '../views/greeting';
+import GreetingScreen from '../views/greeting-screen-view';
 
 export default class GreetingPresenter {
   constructor() {

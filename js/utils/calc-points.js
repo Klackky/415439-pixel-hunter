@@ -21,7 +21,9 @@ const calculatePoints = (answers, lives) => {
   points += ((correctAnswersArray.length) * Points.REGULAR_POINTS);
   points += ((fastAnswersArray.length) * Points.EXTRA_POINTS);
   points -= ((slowAnswersArray.length) * Points.EXTRA_POINTS);
-  points += lives * Points.EXTRA_POINTS;
+  if (lives > MinimumRequirement.LIVES) {
+    points += lives * Points.EXTRA_POINTS;
+  }
   return points;
 };
 export default calculatePoints;

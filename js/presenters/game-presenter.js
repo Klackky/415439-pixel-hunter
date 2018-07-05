@@ -1,8 +1,7 @@
-import GameScreen from '../views/gameScreenView';
-import HeaderTemplate from '../views/header';
+import GameScreen from '../views/game-screen-view';
+import HeaderTemplate from '../views/header-view';
 import FooterTemplate from '../templates/footer';
 import {GameStandarts} from '../game-consts';
-// import resizeImages from '../utils/resize';
 import {resizeRenderedImages} from '../utils/resize';
 import Router from '../router';
 const ONE_SECOND = 1000;
@@ -35,7 +34,6 @@ class GamePresenter {
       this.model.tick();
       if (this.model.state.time <= 0) {
         this.onAnswer(false);
-        this.changeLevel();
       }
       this.header.blinkTimer(this.model.state.time);
     }, ONE_SECOND);

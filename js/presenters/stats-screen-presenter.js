@@ -1,5 +1,5 @@
 import Router from '../router';
-import StatsScreen from '../views/stats';
+import StatsScreen from '../views/stats-screen-view';
 
 export default class StatsScreenPresenter {
   constructor(state) {

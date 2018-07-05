@@ -1,4 +1,4 @@
-import INITIAL_GAME_STATE from '../data/gameData';
+import INITIAL_GAME_STATE from '../data/game-data';
 import {AnswersTime} from '../game-consts';
 
 

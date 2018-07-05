@@ -22,14 +22,14 @@ export const resizeRenderedImages = () => {
   const images = imagesContainer.querySelectorAll(`img`);
 
   images.forEach((image) => {
-    image.onload = () => {
+    image.addEventListener(`load`, () => {
       const realImageDimensions = resize(
           {width: image.width, height: image.height},
           {width: image.naturalWidth, height: image.naturalHeight}
       );
       image.height = realImageDimensions.height;
       image.width = realImageDimensions.width;
-    };
+    });
   });
 };
 

@@ -1,20 +1,20 @@
-import IntroScreen from './presenters/introPresenter';
-import GreetingScreen from './presenters/greetingPresenter';
+import IntroScreen from './presenters/intro-presenter';
+import GreetingScreen from './presenters/greeting-presenter';
 import renderScreen from './utils/render-screen';
-import RulesPresenter from './presenters/rulesPresenter';
-import StatsScreenPresenter from './presenters/statsScreenPresenter';
-import GamePresenter from './presenters/GamePresenter';
-import ErrorView from './views/error-screen';
-import ModalView from './views/modal-confirm';
-import GameModel from './gameModel';
+import RulesPresenter from './presenters/rules-presenter';
+import StatsScreenPresenter from './presenters/stats-screen-presenter';
+import GamePresenter from './presenters/game-presenter';
+import ErrorView from './views/error-screen-view';
+import ModalView from './views/modal-confirm-view';
+import GameModel from './game-model';
 import {adaptServerData} from './utils/game-utils';
 import Loader from './loader';
-
+const SERVER_URL = `https://es.dump.academy/pixel-hunter/questions`;
 const ResponseTypes = {
   MIN_NUMBER: 200,
   MAX_NUMBER: 300
 };
-const SERVER_URL = `https://es.dump.academy/pixel-hunter/questions`;
+
 
 const checkStatus = (response) => {
   if (response.status >= ResponseTypes.MIN_NUMBER && response.status < ResponseTypes.MAX_NUMBER) {
@@ -24,7 +24,7 @@ const checkStatus = (response) => {
   }
 };
 
-let gameData;
+let gameDataElements;
 
 export default class Router {
   static showIntro() {
@@ -34,7 +34,7 @@ export default class Router {
       then(checkStatus).
       then((response)=> response.json()).
       then((data) => {
-        gameData = adaptServerData(data);
+        gameDataElements = adaptServerData(data);
       }).
       then(() => Router.showGreetingScreen()).
       catch(Router.showError);
@@ -51,7 +51,7 @@ export default class Router {
   }
 
   static showGameScreen(playerName) {
-    const gameScreen = new GamePresenter(new GameModel(playerName, gameData));
+    const gameScreen = new GamePresenter(new GameModel(playerName, gameDataElements));
     renderScreen(gameScreen.element);
     gameScreen.start();
   }
@@ -76,7 +76,7 @@ export default class Router {
     const statsScreenView = new StatsScreenPresenter(model, playerName);
     Loader.saveResults(model, playerName).
          then(() => Loader.loadResults(playerName)).
-         then((data) => statsScreenView.showScores(data)).
+         then((dataElements) => statsScreenView.showScores(dataElements)).
          then(() => renderScreen(statsScreenView.element)).
          catch(Router.showError);
   }

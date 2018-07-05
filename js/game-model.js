@@ -3,25 +3,22 @@ import {GameStandarts} from './game-consts';
 import Router from './router';
 
 class GameModel {
-  constructor(name, gameData) {
-    this.data = gameData;
+  constructor(name, gameDataElements) {
+    this.data = gameDataElements;
     this.name = name;
-    this.restart();
+    this._restart();
   }
   get state() {
     return this._state;
   }
-  get answers() {
-    return this._state.answers;
+  nextLevel() {
+    return this.data[++this.state.level];
   }
-  changeLevel(state) {
-    return this.data[++state.level];
-  }
-  restart() {
-    this._state = gameReset();
-  }
-  get getLevel() {
+  getCurrentLevel() {
     return this.data[this._state.level];
+  }
+  _restart() {
+    this._state = gameReset();
   }
   tick() {
     this._timer = this._state.time--;
@@ -32,11 +29,6 @@ class GameModel {
   restartTimer() {
     this._state.time = GameStandarts.TIMER_TIME;
   }
-  nextLevel() {
-    return this.data[++this.state.level];
-  }
-  getCurrentLevel() {
-    return this.data[this._state.level];
-  }
+
 }
 export default GameModel;
