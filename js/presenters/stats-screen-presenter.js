@@ -17,6 +17,7 @@ export default class StatsScreenPresenter {
   start() {
     this.content.onBackButton = this.onBackButton.bind(this);
   }
+
   showScores(scores) {
     this.content.showScores(scores);
   }

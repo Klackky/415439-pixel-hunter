@@ -21,9 +21,11 @@ export default class GreetingScreen extends AbstractView {
       </div>
       ${new FooterTemplate().template}`;
   }
+
   onArrow() {
 
   }
+
   bind(element) {
     const nextArrow = element.querySelector(`.greeting__continue`);
     nextArrow.addEventListener(`click`, () => {

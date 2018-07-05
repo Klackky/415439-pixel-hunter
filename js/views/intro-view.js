@@ -1,9 +1,10 @@
 import AbstractView from '../abstract-view';
 import FooterTemplate from '../templates/footer';
-export default class Intro extends AbstractView {
+export default class IntroScreen extends AbstractView {
   constructor() {
     super();
   }
+
   get template() {
     return `<div id="main" class="central__content">
         <div id="intro" class="intro">
@@ -13,9 +14,11 @@ export default class Intro extends AbstractView {
       </div>
     ${new FooterTemplate().template}`;
   }
+
   onClick() {
 
   }
+
   bind(element) {
     const playButton = element.querySelector(`.intro__asterisk`);
     playButton.addEventListener(`click`, () => {

@@ -27,13 +27,13 @@ export default class GameScreen extends AbstractView {
     switch (this.state.type) {
       case `two-of-two`: {
         const gameForm = element.querySelector(`.game__content`);
-        const checkRadioButtons = () => {
+        const onRadioButtonsCheck = () => {
           const answers = Array.from(gameForm.querySelectorAll(`input:checked`));
           if (answers.length === 2) {
             this.onAnswer(checkAnswers(answers, this.state));
           }
         };
-        gameForm.addEventListener(`change`, checkRadioButtons);
+        gameForm.addEventListener(`change`, onRadioButtonsCheck);
         break;
       }
 

@@ -4,6 +4,7 @@ export default class Modal extends AbstractView {
   constructor() {
     super();
   }
+
   get template() {
     return `<section class="modal-confirm modal-confirm__wrap">
       <form class="modal-confirm__inner">

@@ -6,6 +6,7 @@ export default class StatsBarTemplate extends AbstractView {
     super();
     this.state = state;
   }
+
   get template() {
     return `<div class="stats"> <ul class="stats">
     ${renderStatsBar(this.state.answers)}
@@ -36,18 +37,14 @@ const renderStatsBar = (answers) => {
  * @return {result} result we are appending to the statsTemplate;
  */
 const checkState = (answer) => {
-  let result;
   if (answer.answer) {
     if (answer.time < AnswersTime.FAST_ANSWER) {
-      result = `fast`;
+      return `fast`;
     } else if (answer.time > AnswersTime.SLOW_ANSWER) {
-      result = `slow`;
+      return `slow`;
     } else {
-      result = `correct`;
+      return `correct`;
     }
-  } else {
-    result = `wrong`;
   }
-
-  return result;
+  return `wrong`;
 };

@@ -1,4 +1,5 @@
-const SERVER_URL = `https://es.dump.academy/pixel-hunter`;
+import Router from './router';
+export const SERVER_URL = `https://es.dump.academy/pixel-hunter`;
 const DEFAULT_NAME = `Default name`;
 const APP_ID = 19870714;
 
@@ -29,4 +30,23 @@ export default class Loader {
     };
     return fetch(`${SERVER_URL}/stats/${APP_ID}-${name}`, requestSettings).then(checkStatus);
   }
+
 }
+
+export const preloadImages = (gameLevels) => {
+  const promises = [];
+  for (const level of gameLevels) {
+    for (const answer of level.answers) {
+      promises.push(new Promise((resolve) => {
+        const newImage = new Image();
+        newImage.onload = () => resolve(newImage.onload = null);
+        newImage.onerror = () => {
+          newImage.onerror = null;
+          Router.showError(`Can't load image: ${newImage.src}`);
+        };
+        newImage.src = answer.image.url;
+      }));
+    }
+  }
+  return Promise.all(promises);
+};

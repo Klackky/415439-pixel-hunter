@@ -5,7 +5,4 @@ const INITIAL_GAME_STATE = {
   answers: [],
 };
 Object.freeze(INITIAL_GAME_STATE);
-export const adaptServerData = (data) => {
-  return data;
-};
 export default INITIAL_GAME_STATE;

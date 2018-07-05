@@ -11,7 +11,7 @@ class GameModel {
   get state() {
     return this._state;
   }
-  nextLevel() {
+  getNextLevel() {
     return this.data[++this.state.level];
   }
   getCurrentLevel() {

@@ -20,6 +20,7 @@ export default class HeaderTemplate extends AbstractView {
         </div>
       </header>`;
   }
+
   onBackButton() {
 
   }

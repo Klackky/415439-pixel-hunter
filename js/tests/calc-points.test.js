@@ -42,7 +42,7 @@ const testCases = [
   {
     testDescription: `negative result, too many mistakes`,
     answers: [...Array(5).fill(correctNormalAnswer), ...Array(3).fill(incorrectAnswer)],
-    lives: 0,
+    lives: -1,
     correctResult: -1
   },
   // negative result, only 5 answers

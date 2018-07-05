@@ -26,10 +26,10 @@ class GamePresenter {
     this.content.onAnswer = this.onAnswer.bind(this);
     this.header.onBackButton = this.onBackButton.bind(this);
     resizeRenderedImages(this.element);
-    this.startTimer();
+    this._startTimer();
   }
 
-  startTimer() {
+  _startTimer() {
     this._interval = setInterval(() => {
       this.model.tick();
       if (this.model.state.time <= 0) {
@@ -39,56 +39,51 @@ class GamePresenter {
     }, ONE_SECOND);
   }
 
+  _stop() {
+    clearInterval(this._interval);
+  }
+
+  _changeLevel() {
+    this._stop();
+    this.model.restartTimer();
+    this._updateHeader();
+    this._startTimer();
+    const nextLevel = new GameScreen(this.model.getNextLevel(), this.model.state);
+    nextLevel.onAnswer = this.onAnswer.bind(this);
+    this._updateView(nextLevel);
+  }
+
+  _updateView(view) {
+    this.root.replaceChild(view.element, this.content.element);
+    this.content = view;
+    resizeRenderedImages(view.element);
+  }
+
+  _updateHeader() {
+    const header = new HeaderTemplate(this.model.state, this.model.time);
+    this.root.replaceChild(header.element, this.header.element);
+    this.header = header;
+    this.header.onBackButton = this.onBackButton.bind(this);
+  }
+
+  onBackButton() {
+    this._stop();
+    Router.showModalWindow();
+    this.model.restart();
+  }
+
   onAnswer(isCorrect) {
-    this.stopGame();
+    this._stop();
     this.model.state.answers.push({answer: isCorrect, time: GameStandarts.TIMER_TIME - this.model.state.time});
     if (!isCorrect) {
       --this.model.state.lives;
     }
     if (this.model.state.lives === GameStandarts.MIN_LIVES || this.model.state.level === GameStandarts.MAX_LEVEL) {
       this.model.endGame();
-      this.stopGame();
+      this._stop();
     } else {
-      this.changeLevel();
+      this._changeLevel();
     }
-  }
-
-  onBackButton() {
-    this.stopGame();
-    Router.showModalWindow();
-    this.model.restart();
-  }
-
-  stopGame() {
-    clearInterval(this._interval);
-  }
-
-  restartGame() {
-    this.stopGame();
-    this.model.restart();
-  }
-
-  changeLevel() {
-    this.stopGame();
-    this.model.restartTimer();
-    this.updateHeader();
-    this.startTimer();
-    const nextLevel = new GameScreen(this.model.nextLevel(), this.model.state);
-    nextLevel.onAnswer = this.onAnswer.bind(this);
-    this.updateView(nextLevel);
-  }
-
-  updateView(view) {
-    this.root.replaceChild(view.element, this.content.element);
-    this.content = view;
-    resizeRenderedImages(view.element);
-  }
-
-  updateHeader() {
-    const header = new HeaderTemplate(this.model.state, this.model.time);
-    this.root.replaceChild(header.element, this.header.element);
-    this.header = header;
-    this.header.onBackButton = this.onBackButton.bind(this);
   }
 
 }

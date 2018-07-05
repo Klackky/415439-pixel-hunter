@@ -12,6 +12,7 @@ export default class StatsScreen extends AbstractView {
     super();
     this.state = state;
   }
+
   get template() {
     return `<header class="header">
        ${arrowBack}
@@ -19,9 +20,11 @@ export default class StatsScreen extends AbstractView {
        <h1>${calculatePoints(this.state.answers, this.state.lives) !== -1 ? `Победа!` : `Поражение!`}</h1> </div>
        ${new FooterTemplate().template}`;
   }
+
   onBackButton() {
 
   }
+
   showScores(scores) {
     let string = ``;
     scores.reverse().map((game, index) => {
