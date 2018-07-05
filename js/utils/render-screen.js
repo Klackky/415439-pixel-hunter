@@ -1,4 +1,4 @@
-const mainScreenContainer = document.querySelector(`.central`);
+import {mainScreenContainer} from '../game-consts';
 /**
  * Function responsible for screen render
  *

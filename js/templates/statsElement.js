@@ -1,6 +1,7 @@
 import AbstractView from '../abstract-view';
 import {GameStandarts} from '../game-consts';
 import {AnswersTime} from '../game-consts';
+
 export default class StatsBarTemplate extends AbstractView {
   constructor(state) {
     super();
@@ -29,6 +30,7 @@ const renderStatsBar = (answers) => {
   }
   return markup;
 };
+
 /**
  * Function calculate points based on player`s performance
  *

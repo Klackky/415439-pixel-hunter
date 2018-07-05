@@ -1,9 +1,9 @@
 import GameScreen from '../views/game-screen-view';
 import HeaderTemplate from '../views/header-view';
 import FooterTemplate from '../templates/footer';
+import Router from '../router';
 import {GameStandarts} from '../game-consts';
 import {resizeRenderedImages} from '../utils/resize';
-import Router from '../router';
 const ONE_SECOND = 1000;
 
 class GamePresenter {

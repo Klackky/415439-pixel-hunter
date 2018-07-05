@@ -1,4 +1,5 @@
 import AbstractView from '../abstract-view';
+
 export default class FooterTemplate extends AbstractView {
   constructor() {
     super();

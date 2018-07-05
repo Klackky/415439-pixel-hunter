@@ -21,3 +21,5 @@ export const MinimumRequirement = {
   LIVES: -1,
   ANSWERS: 10
 };
+
+export const mainScreenContainer = document.querySelector(`.central`);

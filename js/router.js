@@ -8,10 +8,11 @@ import ErrorView from './views/error-screen-view';
 import ModalView from './views/modal-confirm-view';
 import SpinnerView from './views/spinner-view';
 import GameModel from './game-model';
-import {adaptServerData} from './utils/game-utils';
 import Loader from './loader';
+import {adaptServerData} from './utils/game-utils';
 import {preloadImages} from './loader';
 import {SERVER_URL} from './loader';
+import {mainScreenContainer} from './game-consts';
 
 const FadeTimes = {
   FADE_IN_TIME: 200,
@@ -61,7 +62,7 @@ export default class Router {
 
   static showSpinerLoader() {
     const spinnerLoader = new SpinnerView();
-    document.querySelector(`.central`).appendChild(spinnerLoader.element);
+    mainScreenContainer.appendChild(spinnerLoader.element);
   }
 
   static showRulesScreen() {

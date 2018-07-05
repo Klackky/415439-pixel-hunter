@@ -20,4 +20,8 @@ export default class GreetingPresenter {
   onArrow() {
     Router.showRulesScreen();
   }
+
+  onBackButton() {
+    Router.showGreetingScreen();
+  }
 }

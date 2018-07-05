@@ -1,5 +1,4 @@
 import AbstractView from '../abstract-view';
-import {arrowBack} from '../views/header-view';
 import FooterTemplate from '../templates/footer';
 export default class RulesView extends AbstractView {
   constructor() {
@@ -7,9 +6,7 @@ export default class RulesView extends AbstractView {
   }
 
   get template() {
-    return `<header class="header">
-      ${arrowBack}
-    </header>
+    return `
     <div class="rules">
       <h1 class="rules__title">Правила</h1>
       <p class="rules__description">Угадай 10 раз для каждого изображения фото <img
@@ -40,10 +37,6 @@ export default class RulesView extends AbstractView {
 
   bind(element) {
     const inputForm = element.querySelector(`.rules__input`);
-    const backButton = element.querySelector(`.back`);
-    backButton.addEventListener(`click`, () => {
-      this.onBackButton();
-    });
     const submitButton = element.querySelector(`.rules__button`);
     const submitForm = element.querySelector(`.rules__form`);
     submitForm.addEventListener(`input`, () => {

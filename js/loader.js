@@ -12,7 +12,9 @@ const checkStatus = (response) => {
   }
 };
 
-const toJSON = (response) => response.json();
+const toJSON = (response) => {
+  return response.json();
+};
 
 export default class Loader {
   static loadResults(name = DEFAULT_NAME) {

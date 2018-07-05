@@ -1,11 +1,10 @@
 import FooterTemplate from '../templates/footer';
 import calculatePoints from '../utils/calc-points';
 import AbstractView from '../abstract-view';
-import {arrowBack} from '../views/header-view';
+import createNewDomElement from '../utils/create-new-element';
 import StatsTemplate from '../templates/statsElement';
 import {filterAnswers} from '../utils/game-utils';
 import {Points} from '../game-consts';
-import createNewDomElement from '../utils/create-new-element';
 const NUMBER_OF_ANSWER = 1;
 export default class StatsScreen extends AbstractView {
   constructor(state) {
@@ -14,15 +13,9 @@ export default class StatsScreen extends AbstractView {
   }
 
   get template() {
-    return `<header class="header">
-       ${arrowBack}
-     </header>    <div class="result">
+    return `<div class="result">
        <h1>${calculatePoints(this.state.answers, this.state.lives) !== -1 ? `Победа!` : `Поражение!`}</h1> </div>
        ${new FooterTemplate().template}`;
-  }
-
-  onBackButton() {
-
   }
 
   showScores(scores) {
@@ -79,11 +72,7 @@ export default class StatsScreen extends AbstractView {
     this._scoreBoardContainer.insertAdjacentElement(`afterend`, createNewDomElement(string));
   }
 
-  bind(element) {
-    const backButton = element.querySelector(`.back`);
-    backButton.addEventListener(`click`, () => {
-      this.onBackButton();
-    });
+  bind() {
     this._scoreBoardContainer = this.element.querySelector(`.result`);
   }
 }

@@ -1,7 +1,7 @@
 import AbstractView from '../abstract-view';
-import {checkAnswers} from '../utils/game-utils';
 import renderQuestions from '../templates/questions';
 import StatsBarTemplate from '../templates/statsElement';
+import {checkAnswers} from '../utils/game-utils';
 export default class GameScreen extends AbstractView {
   constructor(state, level) {
     super();
