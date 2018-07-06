@@ -1,12 +1,12 @@
 import Router from '../router';
-import StatsScreen from '../views/stats-screen-view';
-import HeaderTemplate from '../views/header-view';
+import StatsView from '../views/stats-screen-view';
+import HeaderView from '../views/header-view';
 
 export default class StatsScreenPresenter {
   constructor(state) {
     this.state = state;
-    this.header = new HeaderTemplate();
-    this.content = new StatsScreen(this.state);
+    this.header = new HeaderView();
+    this.content = new StatsView(this.state);
     this.root = document.createElement(`div`);
     this.root.appendChild(this.header.element);
     this.root.appendChild(this.content.element);

@@ -2,11 +2,11 @@ import FooterTemplate from '../templates/footer';
 import calculatePoints from '../utils/calc-points';
 import AbstractView from '../abstract-view';
 import createNewDomElement from '../utils/create-new-element';
-import StatsTemplate from '../templates/statsElement';
+import StatsTemplate from '../templates/stats-element';
 import {filterAnswers} from '../utils/game-utils';
 import {Points} from '../game-consts';
 const NUMBER_OF_ANSWER = 1;
-export default class StatsScreen extends AbstractView {
+export default class StatsView extends AbstractView {
   constructor(state) {
     super();
     this.state = state;

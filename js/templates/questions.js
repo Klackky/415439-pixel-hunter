@@ -5,7 +5,6 @@
  * @param {object} level current level
  * @return {string} string we`re appending to the dom
  */
-
 const renderQuestions = (level) => {
   if (level.type === `two-of-two` || level.type === `tinder-like`) {
     return `

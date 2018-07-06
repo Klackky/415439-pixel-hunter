@@ -4,6 +4,7 @@ export default class FooterTemplate extends AbstractView {
   constructor() {
     super();
   }
+
   get template() {
     return `<footer class="footer">
       <a href="https://htmlacademy.ru" class="social-link social-link--academy">HTML Academy</a>

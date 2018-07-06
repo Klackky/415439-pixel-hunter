@@ -1,6 +1,7 @@
 import AbstractView from '../abstract-view';
 import FooterTemplate from '../templates/footer';
-export default class Modal extends AbstractView {
+
+export default class ModalView extends AbstractView {
   constructor() {
     super();
   }

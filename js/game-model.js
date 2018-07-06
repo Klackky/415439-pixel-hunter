@@ -4,8 +4,8 @@ import {GameStandarts} from './game-consts';
 
 class GameModel {
   constructor(name, gameDataElements) {
-    this.data = gameDataElements;
-    this.name = name;
+    this._data = gameDataElements;
+    this._name = name;
     this.restart();
   }
 
@@ -14,11 +14,11 @@ class GameModel {
   }
 
   getNextLevel() {
-    return this.data[++this.state.level];
+    return this._data[++this._state.level];
   }
 
   getCurrentLevel() {
-    return this.data[this._state.level];
+    return this._data[this._state.level];
   }
 
   tick() {
@@ -26,7 +26,7 @@ class GameModel {
   }
 
   endGame() {
-    Router.showStats(this._state, this.name);
+    Router.showStats(this._state, this._name);
   }
 
   restartTimer() {

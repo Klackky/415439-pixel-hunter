@@ -1,9 +1,9 @@
 import Router from '../router';
-import IntroScreen from '../views/intro-view';
+import IntroView from '../views/intro-view';
 
 export default class IntroPresenter {
   constructor() {
-    this.content = new IntroScreen();
+    this.content = new IntroView();
     this.root = document.createElement(`div`);
     this.root.appendChild(this.content.element);
     this.start();

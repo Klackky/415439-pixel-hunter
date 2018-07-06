@@ -1,9 +1,9 @@
 import Router from '../router';
-import GreetingScreen from '../views/greeting-screen-view';
+import GreetingView from '../views/greeting-screen-view';
 
 export default class GreetingPresenter {
   constructor() {
-    this.content = new GreetingScreen();
+    this.content = new GreetingView();
     this.root = document.createElement(`div`);
     this.root.appendChild(this.content.element);
     this.start();

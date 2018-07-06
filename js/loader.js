@@ -41,11 +41,13 @@ export const preloadImages = (gameLevels) => {
     for (const answer of level.answers) {
       promises.push(new Promise((resolve) => {
         const newImage = new Image();
-        newImage.onload = () => resolve(newImage.onload = null);
-        newImage.onerror = () => {
+        newImage.addEventListener(`load`, () => {
+          resolve(newImage.onload = null);
+        });
+        newImage.addEventListener(`error`, () => {
           newImage.onerror = null;
           Router.showError(`Can't load image: ${newImage.src}`);
-        };
+        });
         newImage.src = answer.image.url;
       }));
     }

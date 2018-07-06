@@ -1,5 +1,5 @@
-import GameScreen from '../views/game-screen-view';
-import HeaderTemplate from '../views/header-view';
+import GameView from '../views/game-screen-view';
+import HeaderView from '../views/header-view';
 import FooterTemplate from '../templates/footer';
 import Router from '../router';
 import {GameStandarts} from '../game-consts';
@@ -9,8 +9,8 @@ const ONE_SECOND = 1000;
 class GamePresenter {
   constructor(model) {
     this.model = model;
-    this.content = new GameScreen(this.model.getCurrentLevel(), this.model.state);
-    this.header = new HeaderTemplate(this.model.state);
+    this.content = new GameView(this.model.getCurrentLevel(), this.model.state);
+    this.header = new HeaderView(this.model.state);
     this.root = document.createElement(`div`);
     this.root.appendChild(this.header.element);
     this.root.appendChild(this.content.element);
@@ -48,7 +48,7 @@ class GamePresenter {
     this.model.restartTimer();
     this._updateHeader();
     this._startTimer();
-    const nextLevel = new GameScreen(this.model.getNextLevel(), this.model.state);
+    const nextLevel = new GameView(this.model.getNextLevel(), this.model.state);
     nextLevel.onAnswer = this.onAnswer.bind(this);
     this._updateView(nextLevel);
   }
@@ -60,14 +60,13 @@ class GamePresenter {
   }
 
   _updateHeader() {
-    const header = new HeaderTemplate(this.model.state, this.model.time);
+    const header = new HeaderView(this.model.state, this.model.time);
     this.root.replaceChild(header.element, this.header.element);
     this.header = header;
     this.header.onBackButton = this.onBackButton.bind(this);
   }
 
   onBackButton() {
-    this._stop();
     Router.showModalWindow();
     this.model.restart();
   }

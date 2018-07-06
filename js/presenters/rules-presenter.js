@@ -1,11 +1,11 @@
 import Router from '../router';
 import RulesView from '../views/rules-screen-view';
-import HeaderTemplate from '../views/header-view';
+import HeaderView from '../views/header-view';
 
 export default class RulesPresenter {
   constructor() {
     this.content = new RulesView();
-    this.header = new HeaderTemplate();
+    this.header = new HeaderView();
     this.root = document.createElement(`div`);
     this.root.appendChild(this.header.element);
     this.root.appendChild(this.content.element);
