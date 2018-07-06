@@ -38,8 +38,8 @@ export default class ModalView extends AbstractView {
     closeButton.addEventListener(`click`, () => {
       this.onClose();
     });
-    const okButton = element.querySelector(`.button-submit`);
-    okButton.addEventListener(`click`, () => {
+    const submitButton = element.querySelector(`.button-submit`);
+    submitButton.addEventListener(`click`, () => {
       this.onPositiveClick();
     });
     const cancelButton = element.querySelector(`.button-cancel`);

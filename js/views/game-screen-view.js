@@ -38,9 +38,9 @@ export default class GameView extends AbstractView {
       }
 
       case `tinder-like`: {
-        const form = element.querySelector(`.game__content`);
-        form.addEventListener(`change`, () => {
-          const answers = Array.from(form.querySelectorAll(`input:checked`));
+        const gameForm = element.querySelector(`.game__content`);
+        gameForm.addEventListener(`change`, () => {
+          const answers = Array.from(gameForm.querySelectorAll(`input:checked`));
           if (answers.some((answer) => answer.checked)) {
             this.onAnswer(checkAnswers(answers, this.state));
           }

@@ -13,24 +13,11 @@ import {adaptServerData} from './utils/game-utils';
 import {preloadImages} from './loader';
 import {SERVER_URL} from './loader';
 import {mainScreenContainer} from './utils/render-screen';
+import {checkStatus} from './loader';
 
 const FadeTimes = {
   FADE_IN_TIME: 200,
   FADE_OUT_TIME: 2000
-};
-
-const ResponseTypes = {
-  MIN_NUMBER: 200,
-  MAX_NUMBER: 300
-};
-
-
-const checkStatus = (response) => {
-  if (response.status >= ResponseTypes.MIN_NUMBER && response.status < ResponseTypes.MAX_NUMBER) {
-    return response;
-  } else {
-    throw new Error(`${response.status}: ${response.statusText}`);
-  }
 };
 
 let gameDataComponents;
@@ -55,9 +42,9 @@ export default class Router {
   }
 
   static showGreetingScreen() {
-    const greetingScreenView = new GreetingPresenter();
-    renderScreen(greetingScreenView.element);
-    setTimeout(() => greetingScreenView.element.querySelector(`.greeting`).classList.add(`fade-in`), FadeTimes.FADE_IN_TIME);
+    const greetingScreen = new GreetingPresenter();
+    renderScreen(greetingScreen.element);
+    setTimeout(() => greetingScreen.element.querySelector(`.greeting`).classList.add(`fade-in`), FadeTimes.FADE_IN_TIME);
   }
 
   static showSpinerLoader() {
@@ -66,8 +53,8 @@ export default class Router {
   }
 
   static showRulesScreen() {
-    const rulesScreenView = new RulesPresenter();
-    renderScreen(rulesScreenView.element);
+    const rulesScreen = new RulesPresenter();
+    renderScreen(rulesScreen.element);
   }
 
   static showGameScreen(playerName) {
@@ -77,28 +64,27 @@ export default class Router {
   }
 
   static showError(error) {
-    const errorView = new ErrorView(error);
-    renderScreen(errorView.element);
+    const errorScreen = new ErrorView(error);
+    renderScreen(errorScreen.element);
   }
 
   static showModalWindow(onBackButton) {
-    const wrapper = document.querySelector(`.central`);
     const confirmScreen = new ModalView();
     const modal = confirmScreen.element;
     confirmScreen.onClose = confirmScreen.onCancel = () => {
-      wrapper.removeChild(modal);
+      mainScreenContainer.removeChild(modal);
     };
     confirmScreen.onSubmit = onBackButton;
-    wrapper.appendChild(modal);
+    mainScreenContainer.appendChild(modal);
   }
 
   static showStats(model, playerName) {
-    const statsScreenView = new StatsScreenPresenter(model, playerName);
+    const statsScreen = new StatsScreenPresenter(model, playerName);
     Router.showSpinerLoader();
     Loader.saveResults(model, playerName).
          then(() => Loader.loadResults(playerName)).
-         then((dataComponents) => statsScreenView.showScores(dataComponents)).
-         then(() => renderScreen(statsScreenView.element)).
+         then((dataComponents) => statsScreen.showScores(dataComponents)).
+         then(() => renderScreen(statsScreen.element)).
          catch((error) => Router.showError(error));
   }
 

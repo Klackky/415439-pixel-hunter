@@ -2,14 +2,16 @@ import Router from './router';
 export const SERVER_URL = `https://es.dump.academy/pixel-hunter`;
 const DEFAULT_NAME = `Default name`;
 const APP_ID = 19870714;
+const ResponseTypes = {
+  MIN_NUMBER: 200,
+  MAX_NUMBER: 300
+};
 
-
-const checkStatus = (response) => {
-  if (response.ok) {
+export const checkStatus = (response) => {
+  if (response.status >= ResponseTypes.MIN_NUMBER && response.status < ResponseTypes.MAX_NUMBER) {
     return response;
-  } else {
-    throw new Error(`${response.status}: ${response.statusText}`);
   }
+  throw new Error(`${response.status}: ${response.statusText}`);
 };
 
 const toJSON = (response) => {
