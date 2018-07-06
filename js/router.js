@@ -12,7 +12,7 @@ import Loader from './loader';
 import {adaptServerData} from './utils/game-utils';
 import {preloadImages} from './loader';
 import {SERVER_URL} from './loader';
-import {mainScreenContainer} from './game-consts';
+import {mainScreenContainer} from './utils/render-screen';
 
 const FadeTimes = {
   FADE_IN_TIME: 200,
