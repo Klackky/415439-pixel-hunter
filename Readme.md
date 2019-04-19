@@ -1,4 +1,4 @@
 Game Pixel hunter. 
 
 
-[Demo](www.pixel-hunter.netlify.com)
+[Demo](https://pixel-hunter.netlify.com)
