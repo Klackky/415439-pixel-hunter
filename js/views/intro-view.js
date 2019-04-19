@@ -10,7 +10,7 @@ export default class IntroView extends AbstractView {
     return `<div id="main" class="central__content">
         <div id="intro" class="intro">
           <h1 class="intro__asterisk">*</h1>
-          <p class="intro__motto"><sup>*</sup> Это не фото. Это рисунок маслом нидерландского художника-фотореалиста Tjalf Sparnaay.</p>
+          <p class="intro__motto"><sup>*</sup> This is not a photo. This is an oil painting by a Dutch photorealist Tjalf Sparnaay.</p>
         </div>
       </div>
     ${new FooterTemplate().template}`;

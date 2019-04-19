@@ -9,18 +9,17 @@ export default class RulesView extends AbstractView {
   get template() {
     return `
     <div class="rules">
-      <h1 class="rules__title">Правила</h1>
-      <p class="rules__description">Угадай 10 раз для каждого изображения фото <img
-        src="img/photo_icon.png" width="16" height="16"> или рисунок <img
+      <h1 class="rules__title">Rules</h1>
+      <p class="rules__description"> You have 10 tries to guess either a photo <img
+        src="img/photo_icon.png" width="16" height="16"> or a painting <img
         src="img/paint_icon.png" width="16" height="16" alt="">.<br>
-        Фотографиями или рисунками могут быть оба изображения.<br>
-        На каждую попытку отводится 30 секунд.<br>
-        Ошибиться можно не более 3 раз.<br>
-        <br>
-        Готовы?
+        You can have multiple photos or paintings displayed at the same time <br>
+        You have 30 seconds to make a guess with additional time bonus for a quick answer.<br>
+        The maximum number of mistakes is 3. <br>
+        Are you ready to rock?
       </p>
       <form class="rules__form">
-        <input class="rules__input" type="text" placeholder="Ваше Имя">
+        <input class="rules__input" type="text" placeholder="Your name">
         <button class="rules__button  continue" type="submit" disabled>Go!</button>
       </form>
     </div>

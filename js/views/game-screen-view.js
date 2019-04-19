@@ -2,6 +2,7 @@ import AbstractView from '../abstract-view';
 import renderQuestions from '../templates/questions';
 import StatsBarTemplate from '../templates/stats-element';
 import {checkAnswers} from '../utils/game-utils';
+
 export default class GameView extends AbstractView {
   constructor(state, level) {
     super();
@@ -9,10 +10,22 @@ export default class GameView extends AbstractView {
     this.state = state;
   }
 
+  translateQuestion(question) {
+    if (this.state.question === `Найдите рисунок среди изображений`) {
+      return `Find a painting among these images`;
+    } if (this.state.question === `Угадайте для каждого изображения фото или рисунок?`) {
+      return `Guess for every image if it is a photo or a painting`;
+    } if (this.state.question === `Найдите фото среди изображений`) {
+      return `Find a photo among these images`;
+    } else {
+      return `Guess is it a painting or a photo?`;
+    }
+  }
+
   get template() {
     return `
     <div class="game">
-      <p class="game__task">${this.state.question}</p>
+      <p class="game__task">${this.translateQuestion(this.state.question)}</p>
     ${renderQuestions(this.state)}
     ${new StatsBarTemplate(this.level).template}
     </div>`;

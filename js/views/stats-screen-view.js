@@ -14,7 +14,7 @@ export default class StatsView extends AbstractView {
 
   get template() {
     return `<div class="result">
-       <h1>${calculatePoints(this.state.answers, this.state.lives) !== -1 ? `Победа!` : `Поражение!`}</h1> </div>
+       <h1>${calculatePoints(this.state.answers, this.state.lives) !== -1 ? `You have won!` : `You have failed!`}</h1> </div>
        ${new FooterTemplate().template}`;
   }
 
@@ -43,21 +43,21 @@ export default class StatsView extends AbstractView {
       </tr>
       <tr>
         <td></td>
-        <td class="result__extra">Бонус за скорость:</td>
+        <td class="result__extra">Bonus for speed:</td>
         <td class="result__extra">${filterAnswers(game).fastAnswers.length}&nbsp;<span class="stats__result stats__result--fast"></span></td>
         <td class="result__points">×&nbsp;50</td>
         <td class="result__total">${filterAnswers(game).fastAnswers.length * Points.EXTRA_POINTS}</td>
       </tr>
       <tr>
         <td></td>
-        <td class="result__extra">Бонус за жизни:</td>
+        <td class="result__extra">Bonus for lives:</td>
         <td class="result__extra">${game.lives}&nbsp;<span class="stats__result stats__result--alive"></span></td>
         <td class="result__points">×&nbsp;50</td>
         <td class="result__total">${game.lives * Points.EXTRA_POINTS}</td>
       </tr>
       <tr>
         <td></td>
-        <td class="result__extra">Штраф за медлительность:</td>
+        <td class="result__extra">Penalty for slow answers:</td>
         <td class="result__extra">${filterAnswers(game).slowAnswers.length}&nbsp;<span class="stats__result stats__result--slow"></span></td>
         <td class="result__points">×&nbsp;50</td>
         <td class="result__total">${filterAnswers(game).slowAnswers.length * Points.EXTRA_POINTS}</td>

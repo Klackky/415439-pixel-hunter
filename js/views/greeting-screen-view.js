@@ -10,12 +10,12 @@ export default class GreetingView extends AbstractView {
         <div class="greeting__logo"><img src="img/logo_big.png" width="201" height="89" alt="Pixel Hunter"></div>
         <h1 class="greeting__asterisk">*</h1>
         <div class="greeting__challenge">
-          <h3>Лучшие художники-фотореалисты бросают&nbsp;тебе&nbsp;вызов!</h3>
-          <p>Правила игры просты.<br>
-            Нужно отличить рисунок&nbsp;от фотографии и сделать выбор.<br>
-            Задача кажется тривиальной, но не думай, что все так просто.<br>
-            Фотореализм обманчив и коварен.<br>
-            Помни, главное — смотреть очень внимательно.</p>
+          <h3> The best photorealism artists are challenging you!</h3>
+          <p>The rules are simple.<br>
+          You need to distinguish a painting from a photo and make a choice.<br>
+          The task seams trivial, but do not think that everything is so simple. <br>
+          Photorealism could be deceptive and cunning. <br>
+          Remember, most importantly - to look very attentively. </p>
         </div>
         <div class="greeting__continue"><span><img src="img/arrow_right.svg" width="64" height="64" alt="Next"></span></div>
       </div>
