@@ -30,27 +30,27 @@
    position: relative;
    cursor: pointer;
 }
-.game__option .tooltiptext {
-  visibility: hidden;
-    width: 120px;
-    background-color: white;
-    font-color: black;
-    text-align: center;
-    font-size: 16px;
-    border-radius: 6px;
-    padding: 5px 0;
-    left: 40%;
-    right: 50%;
-    top: 50%;
+// .game__option .tooltiptext {
+//   visibility: hidden;
+//     width: 120px;
+//     background-color: white;
+//     font-color: black;
+//     text-align: center;
+//     font-size: 16px;
+//     border-radius: 6px;
+//     padding: 5px 0;
+//     left: 40%;
+//     right: 50%;
+//     top: 50%;
 
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-}
-.game__option:hover .tooltiptext{
-    outline: 2px solid red;
-    visibility: visible;
-  }
+//     /* Position the tooltip */
+//     position: absolute;
+//     z-index: 1;
+// }
+// .game__option:hover .tooltiptext{
+//     outline: 2px solid red;
+//     visibility: visible;
+//   }
 
 
 .fade-out {
